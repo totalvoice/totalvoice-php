@@ -132,6 +132,14 @@ class Client implements ClientInterface
     }
 
     /**
+     * @return resource
+     */
+    public function getResource()
+    {
+        return $this->resource;
+    }
+
+    /**
      * @method send
      * @return string
      */
