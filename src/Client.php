@@ -122,8 +122,8 @@ class Client implements ClientInterface
     }
 
     /**
-     * Monta os parâmetros padrões do cabeçalho: Host, Content-Type e Access-Token
-     * @param $message
+     * Monta os parâmetros padrões do cabeçalho: Content-Type e Access-Token
+     * @param void
      */
     private function defaultHeaders()
     {
@@ -132,11 +132,8 @@ class Client implements ClientInterface
     }
 
     /**
-     * Escreve a mensagem no socket
-     * @method write
-     * @param $message
-     * @return int
-     * @throws \Exception
+     * @method send
+     * @return string
      */
     protected function send()
     {
