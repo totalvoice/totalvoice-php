@@ -55,22 +55,22 @@ class ContaService
 
     /**
      * Atualiza os dados da minha conta
-     * @param string $name
+     * @param string $nome
      * @param string $login
-     * @param string $password
+     * @param string $senha
      * @param null $cpfCnpj
-     * @param null $phone
+     * @param null $telefone
      * @return string
      */
-    public function atualizaDadosConta($name, $login, $password, $cpfCnpj = null, $phone = null)
+    public function atualizaDadosConta($nome, $login, $senha, $cpfCnpj = null, $telefone = null)
     {
         return $this->client->put(
             new Route([self::ROTA_CONTA]), [
-                'nome'     => $name,
+                'nome'     => $nome,
                 'login'    => $login,
-                'senha'    => $password,
+                'senha'    => $senha,
                 'cpf_cnpj' => $cpfCnpj,
-                'telefone' => $phone
+                'telefone' => $telefone
             ]            
         );
     }
@@ -107,24 +107,24 @@ class ContaService
 
     /**
      * Apaga um webhook
-     * @param string $name
+     * @param string $nome
      * @return string
      */
-    public function excluirWebhook($name)
+    public function excluirWebhook($nome)
     {
-        return $this->client->delete(new Route([self::ROTA_WEBHOOK, $name]));
+        return $this->client->delete(new Route([self::ROTA_WEBHOOK, $nome]));
     }
 
     /**
      * Cadastra ou atualiza um webhook
-     * @param $name
+     * @param $nome
      * @param $url
      * @return string
      */
-    public function salvaWebhook($name, $url)
+    public function salvaWebhook($nome, $url)
     {
         return $this->client->put(
-            new Route([self::ROTA_WEBHOOK, $name]), 
+            new Route([self::ROTA_WEBHOOK, $nome]), 
             ['url' => $url]
         );
     }
