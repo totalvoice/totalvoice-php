@@ -1,15 +1,15 @@
 <?php
-namespace TotalVoice\Audio;
+namespace TotalVoice\Sms;
 
 use TotalVoice\Route;
 use TotalVoice\ClientInterface;
 
-class AudioService
+class SmsService
 {
     /**
      * @var string
      */
-    const ROTA_AUDIO = '/audio/';
+    const ROTA_SMS = '/sms/';
 
     /**
      * @var ClientInterface
@@ -26,37 +26,37 @@ class AudioService
     }
 
     /**
-     * Envia um audio para um número destino
+     * Envia um sms para um número destino
      * @param string $numero_destino
-     * @param string $url_audio
-     * @param bool $resposta_usuario
-     * @param string $bina
+     * @param string $mensagem
+     * @param bool   $resposta_usuario
+     * @param bool   $multi_sms
      * @return mixed
      */
-    public function enviar($numero_destino, $url_audio, $resposta_usuario = false, $bina = null)
+    public function enviar($numero_destino, $mensagem, $resposta_usuario = false, $multi_sms = false)
     {
         return $this->client->post(
-            new Route([self::ROTA_AUDIO]), [
+            new Route([self::ROTA_SMS]), [
                 'numero_destino'    => $numero_destino,
-                'url_audio'         => $url_audio,
+                'mensagem'          => $mensagem,
                 'resposta_usuario'  => $resposta_usuario,
-                'bina'              => $bina
+                'multi_sms'         => $multi_sms
             ]
         );
     }
 
     /**
-     * Busca um audio pelo seu ID
+     * Busca um sms pelo seu ID
      * @param $id
      * @return string
      */
-    public function buscaAudio($id)
+    public function buscaSms($id)
     {
-        return $this->client->get(new Route([self::ROTA_AUDIO, $id]));
+        return $this->client->get(new Route([self::ROTA_SMS, $id]));
     }
 
     /**
-     * Relatório de mensagens de Audios
+     * Relatório de mensagens de Sms
      * @param \DateTime $dataInicio
      * @param \DateTime $dataFinal
      * @return string
@@ -64,7 +64,7 @@ class AudioService
     public function relatorio(\DateTime $dataInicio, \DateTime $dataFinal)
     {
         return $this->client->get(
-            new Route([self::ROTA_AUDIO, 'relatorio']), [
+            new Route([self::ROTA_SMS, 'relatorio']), [
             'data_inicio' => $dataInicio->format('d/m/Y'),
             'data_fim'    => $dataFinal->format('d/m/Y')
         ]);
