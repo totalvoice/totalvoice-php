@@ -55,12 +55,12 @@ class Curl
      * Realiza o parser da resposta para retornar no formato JSON
      * @param $data
      * @return string
-     * @throws \Exception
+     * @throws ClientException
      */
-    private function serialize($data)
+    public function serialize($data)
     {
         if(! is_array($data)) {
-            throw new \Exception("Os dados devem ser um array.");
+            throw new ClientException("Os dados devem ser um array.");
         }
         return json_encode($data);
     }
