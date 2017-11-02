@@ -17,6 +17,11 @@ class CentralService
     const ROTA_WEBPHONE = '/webphone/';
 
     /**
+     * @var string
+     */
+    const ROTA_URA = '/ura/';
+
+    /**
      * @var ClientInterface
      */
     private $client;
@@ -64,7 +69,7 @@ class CentralService
 
     /**
      * Remove um Ramal
-     * @param string $name
+     * @param  string $id
      * @return string
      */
     public function excluirRamal($id)
@@ -145,4 +150,47 @@ class CentralService
             ]
         );
     }
+
+    /**
+     * Cria uma nova URA
+     * @param string $nome
+     * @param array  $dados
+     * @return string
+     */
+    public function criarUra($nome, $dados)
+    {
+        return $this->client->post(
+            new Route([self::ROTA_URA]), [
+            'nome'            => $nome,
+            'dados'           => $dados
+        ]);
+    }
+
+    /**
+     * Remove uma Ura
+     * @param  string $id
+     * @return string
+     */
+    public function excluirUra($id)
+    {
+        return $this->client->delete(new Route([self::ROTA_URA, $id]));
+    }
+
+    /**
+     * Atualiza uma ura
+     * @param string $id
+     * @param string $nome
+     * @param array  $dados
+     * @return string
+     */
+    public function atualizarUra($id, $nome, $dados)
+    {
+        return $this->client->put(
+            new Route([self::ROTA_URA, $id]), [
+                'nome'          => $nome,
+                'dados'         => $dados
+            ]
+        );
+    }
+
 }
