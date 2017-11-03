@@ -3,7 +3,7 @@ Cliente em PHP para API da Totalvoice
 
 Master:
 [![Build Status](https://travis-ci.org/totalvoice/totalvoice-php.svg?branch=master)](http://travis-ci.org/#!/totalvoice/totalvoice-php)
-[![Packagist](https://img.shields.io/packagist/v/totalvoice/client.svg)](https://github.com/totalvoice/totalvoice-php)
+[![Packagist](https://img.shields.io/packagist/v/total-voice/php-client.svg)](https://github.com/totalvoice/totalvoice-php)
 
 > ### Funcionalidades
 
