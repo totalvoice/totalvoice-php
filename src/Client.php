@@ -145,6 +145,13 @@ class Client implements ClientInterface
      */
     protected function send()
     {
-        return $this->resource->exec();
+        $return = $this->resource->exec();
+        
+        $response = new Response();
+        $response->setStatusCode((int)$return['http_code']);
+        $response->setContentType($return['content_type']);
+        $response->setContent($return['body']);
+
+        return $response;
     }
 }
