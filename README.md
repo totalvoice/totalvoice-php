@@ -1,6 +1,10 @@
 # totalvoice-php
 Cliente em PHP para API da Totalvoice
 
+Master:
+[![Build Status](https://travis-ci.org/totalvoice/totalvoice-php.svg?branch=master)](http://travis-ci.org/#!/totalvoice/totalvoice-php)
+[![Packagist](https://img.shields.io/packagist/v/totalvoice/client.svg)](https://github.com/totalvoice/totalvoice-php)
+
 > ### Funcionalidades
 
 - Gerenciamento das chamadas
@@ -128,13 +132,13 @@ try {
 // Considero que já existe um autoloader compatível com a PSR-4 registrado
 
 use TotalVoice\Client;
-use TotalVoice\SMS\SMSService;
+use TotalVoice\Sms\SmsService;
 use TotalVoice\ClientException;
 
 try {
     
     $client = new Client('{YOUR-ACCESS-TOKEN}');
-    $service = new SMSService($client);
+    $service = new SmsService($client);
     $response = $service->enviar('NUMERO-DESTINO', 'MENSAGEM');
     echo $response; // {}
 
@@ -150,13 +154,13 @@ try {
 // Considero que já existe um autoloader compatível com a PSR-4 registrado
 
 use TotalVoice\Client;
-use TotalVoice\TTS\TTSService;
+use TotalVoice\Tts\TtsService;
 use TotalVoice\ClientException;
 
 try {
     
     $client = new Client('{YOUR-ACCESS-TOKEN}');
-    $service = new TTSService($client);
+    $service = new TtsService($client);
     $response = $service->enviar('NUMERO-DESTINO', 'MENSAGEM');
     echo $response; // {}
 
