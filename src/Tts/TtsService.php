@@ -27,23 +27,23 @@ class TtsService
 
     /**
      * Envia um TTS (text-to-speach) para um número destino
-     * @param string $numero_destino
+     * @param string $numeroDestino
      * @param string $mensagem
      * @param string $velocidade
-     * @param bool   $resposta_usuario
-     * @param string $tipo_voz
+     * @param bool   $respostaUsuario
+     * @param string $tipoVoz
      * @param string $bina
      * @return mixed
      */
-    public function enviar($numero_destino, $mensagem, $velocidade = null, $resposta_usuario = false, $tipo_voz = null, $bina = null)
+    public function enviar($numeroDestino, $mensagem, $velocidade = null, $respostaUsuario = false, $tipoVoz = null, $bina = null)
     {
         return $this->client->post(
             new Route([self::ROTA_TTS]), [
-                'numero_destino'    => $numero_destino,
+                'numero_destino'    => $numeroDestino,
                 'mensagem'          => $mensagem,
                 'velocidade'        => $velocidade,
-                'resposta_usuario'  => $resposta_usuario,
-                'tipo_voz'          => $tipo_voz,
+                'resposta_usuario'  => $respostaUsuario,
+                'tipo_voz'          => $tipoVoz,
                 'bina'              => $bina
             ]
         );
