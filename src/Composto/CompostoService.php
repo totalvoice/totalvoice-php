@@ -27,17 +27,17 @@ class CompostoService
 
     /**
      * Envia um composto para um número destino
-     * @param string $numero_destino
+     * @param string $numeroDestino
      * @param array  $dados
      * @param string $bina
      * @param string $tags
      * @return mixed
      */
-    public function enviar($numero_destino, $dados, $bina = null, $tags = null)
+    public function enviar($numeroDestino, $dados, $bina = null, $tags = null)
     {
         return $this->client->post(
             new Route([self::ROTA_COMPOSTO]), [
-                'numero_destino'    => $numero_destino,
+                'numero_destino'    => $numeroDestino,
                 'dados'             => $dados,
                 'bina'              => $bina,
                 'tags'              => $tags

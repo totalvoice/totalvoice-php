@@ -27,20 +27,20 @@ class SmsService
 
     /**
      * Envia um sms para um número destino
-     * @param string $numero_destino
+     * @param string $numeroDestino
      * @param string $mensagem
-     * @param bool   $resposta_usuario
-     * @param bool   $multi_sms
+     * @param bool   $respostaUsuario
+     * @param bool   $multiSms
      * @return mixed
      */
-    public function enviar($numero_destino, $mensagem, $resposta_usuario = false, $multi_sms = false)
+    public function enviar($numeroDestino, $mensagem, $respostaUsuario = false, $multiSms = false)
     {
         return $this->client->post(
             new Route([self::ROTA_SMS]), [
-                'numero_destino'    => $numero_destino,
+                'numero_destino'    => $numeroDestino,
                 'mensagem'          => $mensagem,
-                'resposta_usuario'  => $resposta_usuario,
-                'multi_sms'         => $multi_sms
+                'resposta_usuario'  => $respostaUsuario,
+                'multi_sms'         => $multiSms
             ]
         );
     }

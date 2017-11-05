@@ -27,19 +27,19 @@ class AudioService
 
     /**
      * Envia um audio para um número destino
-     * @param string $numero_destino
-     * @param string $url_audio
-     * @param bool $resposta_usuario
+     * @param string $numeroDestino
+     * @param string $urlAudio
+     * @param bool $respostaUsuario
      * @param string $bina
      * @return mixed
      */
-    public function enviar($numero_destino, $url_audio, $resposta_usuario = false, $bina = null)
+    public function enviar($numeroDestino, $urlAudio, $respostaUsuario = false, $bina = null)
     {
         return $this->client->post(
             new Route([self::ROTA_AUDIO]), [
-                'numero_destino'    => $numero_destino,
-                'url_audio'         => $url_audio,
-                'resposta_usuario'  => $resposta_usuario,
+                'numero_destino'    => $numeroDestino,
+                'url_audio'         => $urlAudio,
+                'resposta_usuario'  => $respostaUsuario,
                 'bina'              => $bina
             ]
         );

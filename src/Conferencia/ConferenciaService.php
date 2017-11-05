@@ -50,16 +50,16 @@ class ConferenciaService
      * @param string $id
      * @param string $numero
      * @param string $bina
-     * @param bool   $gravar_audio
+     * @param bool   $gravarAudio
      * @return mixed
      */
-    public function addNumeroConferencia($id, $numero, $bina = null, $gravar_audio = false)
+    public function addNumeroConferencia($id, $numero, $bina = null, $gravarAudio = false)
     {
         return $this->client->post(
             new Route([self::ROTA_CONFERENCIA, $id]), [
                 'numero'        => $numero,
                 'bina'          => $bina,
-                'gravar_audio'  => $gravar_audio
+                'gravar_audio'  => $gravarAudio
             ]
         );
     }

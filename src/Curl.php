@@ -20,6 +20,7 @@ class Curl
     {
         $this->resource = curl_init();
         curl_setopt($this->resource, CURLOPT_RETURNTRANSFER, true);
+        curl_setopt($this->resource, CURLOPT_SSL_VERIFYPEER, true);
     }
 
     /**
@@ -107,6 +108,11 @@ class Curl
     public function exec()
     {
         $this->buildHeaders();
-        return curl_exec($this->resource);
+        $data = curl_exec($this->resource);
+        $info = curl_getinfo($this->resource);
+
+        curl_close($this->resource);
+
+        return array_merge(['body' => $data], $info);
     }
 }
