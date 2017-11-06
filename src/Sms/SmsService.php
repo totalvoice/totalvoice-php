@@ -27,28 +27,21 @@ class SmsService
 
     /**
      * Envia um sms para um número destino
-     * @param string $numeroDestino
-     * @param string $mensagem
-     * @param bool   $respostaUsuario
-     * @param bool   $multiSms
+     * @param array $data
      * @return mixed
      */
-    public function enviar($numeroDestino, $mensagem, $respostaUsuario = false, $multiSms = false)
+    public function enviar($data)
     {
         return $this->client->post(
-            new Route([self::ROTA_SMS]), [
-                'numero_destino'    => $numeroDestino,
-                'mensagem'          => $mensagem,
-                'resposta_usuario'  => $respostaUsuario,
-                'multi_sms'         => $multiSms
-            ]
+            new Route([self::ROTA_SMS]),
+            $data
         );
     }
 
     /**
      * Busca um sms pelo seu ID
      * @param $id
-     * @return string
+     * @return mixed
      */
     public function buscaSms($id)
     {
@@ -59,7 +52,7 @@ class SmsService
      * Relatório de mensagens de Sms
      * @param \DateTime $dataInicio
      * @param \DateTime $dataFinal
-     * @return string
+     * @return mixed
      */
     public function relatorio(\DateTime $dataInicio, \DateTime $dataFinal)
     {

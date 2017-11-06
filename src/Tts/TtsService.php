@@ -27,32 +27,21 @@ class TtsService
 
     /**
      * Envia um TTS (text-to-speach) para um número destino
-     * @param string $numeroDestino
-     * @param string $mensagem
-     * @param string $velocidade
-     * @param bool   $respostaUsuario
-     * @param string $tipoVoz
-     * @param string $bina
+     * @param array $data
      * @return mixed
      */
-    public function enviar($numeroDestino, $mensagem, $velocidade = null, $respostaUsuario = false, $tipoVoz = null, $bina = null)
+    public function enviar($data)
     {
         return $this->client->post(
-            new Route([self::ROTA_TTS]), [
-                'numero_destino'    => $numeroDestino,
-                'mensagem'          => $mensagem,
-                'velocidade'        => $velocidade,
-                'resposta_usuario'  => $respostaUsuario,
-                'tipo_voz'          => $tipoVoz,
-                'bina'              => $bina
-            ]
+            new Route([self::ROTA_TTS]),
+            $data
         );
     }
 
     /**
      * Busca um tts pelo seu ID
      * @param $id
-     * @return string
+     * @return mixed
      */
     public function buscaTts($id)
     {
@@ -63,7 +52,7 @@ class TtsService
      * Relatório de mensagens de Tts
      * @param \DateTime $dataInicio
      * @param \DateTime $dataFinal
-     * @return string
+     * @return mixed
      */
     public function relatorio(\DateTime $dataInicio, \DateTime $dataFinal)
     {

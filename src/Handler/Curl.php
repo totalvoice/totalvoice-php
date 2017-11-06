@@ -1,5 +1,7 @@
 <?php
-namespace TotalVoice;
+namespace TotalVoice\Handler;
+
+use TotalVoice\ClientException;
 
 class Curl
 {

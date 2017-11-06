@@ -1,9 +1,8 @@
 # totalvoice-php
 Cliente em PHP para API da Totalvoice
 
-Master:
 [![Build Status](https://travis-ci.org/totalvoice/totalvoice-php.svg?branch=master)](http://travis-ci.org/#!/totalvoice/totalvoice-php)
-[![Packagist](https://img.shields.io/packagist/v/total-voice/php-client.svg)](https://github.com/totalvoice/totalvoice-php)
+[![Packagist](https://img.shields.io/packagist/v/total-voice/php-client.svg?style=flat-square)](https://github.com/totalvoice/totalvoice-php)
 
 > ### Funcionalidades
 
@@ -64,20 +63,17 @@ A seguir um pequeno exemplo de como pode ser utilizada esta biblioteca.
 <?php
 // Considero que já existe um autoloader compatível com a PSR-4 registrado
 
-use Total\Client;
+use TotalVoice\Client;
 use TotalVoice\Chamada\ChamadaService;
-use TotalVoice\ClientException;
 
-try {
-    
-    $client = new Client('{YOUR-ACCESS-TOKEN}');
-    $service = new ChamadaService($client);
-    $response = $service->ligar('NUMERO-A', 'NUMERO-B');
-    echo $response;
+$client = new Client('{SEU-ACCESS-TOKEN}');
+$service = new ChamadaService($client);
+$response = $service->ligar([
+                'numero_origem'  => 'NUMERO-A',
+                'numero_destino' => 'NUMERO-B'
+            ]);
+echo $response->getContent();
 
-} catch(ClientException $ex) {
-    echo $ex->getMessage();
-}
 ```
 
 > ##### Consulta de chamada pelo ID
@@ -88,18 +84,12 @@ try {
 
 use TotalVoice\Client;
 use TotalVoice\Chamada\ChamadaService;
-use TotalVoice\ClientException;
 
-try {
-    
-    $client = new Client('{YOUR-ACCESS-TOKEN}');
-    $service = new ChamadaService($client);
-    $response = $service->buscaChamada('ID_CHAMADA');
-    echo $response; // {}
+$client = new Client('{SEU-ACCESS-TOKEN}');
+$service = new ChamadaService($client);
+$response = $service->buscaChamada('ID_CHAMADA');
+echo $response->getContent(); // {}
 
-} catch(ClientException $ex) {
-    echo $ex->getMessage();
-}
 ```
 
 
@@ -111,18 +101,12 @@ try {
 
 use TotalVoice\Client;
 use TotalVoice\Chamada\ChamadaService;
-use TotalVoice\ClientException;
 
-try {
-    
-    $client = new Client('{YOUR-ACCESS-TOKEN}');
-    $service = new ChamadaService($client);
-    $response = $service->encerrar('ID_CHAMADA');
-    echo $response; // {}
+$client = new Client('{SEU-ACCESS-TOKEN}');
+$service = new ChamadaService($client);
+$response = $service->encerrar('ID_CHAMADA');
+echo $response->getContent(); // {}
 
-} catch(ClientException $ex) {
-    echo $ex->getMessage();
-}
 ```
 
 > ##### Envio de SMS
@@ -133,18 +117,15 @@ try {
 
 use TotalVoice\Client;
 use TotalVoice\Sms\SmsService;
-use TotalVoice\ClientException;
 
-try {
+$client = new Client('{SEU-ACCESS-TOKEN}');
+$service = new SmsService($client);
+$response = $service->enviar([
+              'numero_destino' => 'NUMERO',
+              'mensagem'       => 'SUA MENSAGEM'
+            ]);
+echo $response->getContent(); // {}
     
-    $client = new Client('{YOUR-ACCESS-TOKEN}');
-    $service = new SmsService($client);
-    $response = $service->enviar('NUMERO-DESTINO', 'MENSAGEM');
-    echo $response; // {}
-
-} catch(ClientException $ex) {
-    echo $ex->getMessage();
-}
 ```
 
 > ##### Envio de TTS
@@ -155,18 +136,15 @@ try {
 
 use TotalVoice\Client;
 use TotalVoice\Tts\TtsService;
-use TotalVoice\ClientException;
 
-try {
+$client = new Client('{SEU-ACCESS-TOKEN}');
+$service = new TtsService($client);
+$response = $service->enviar([
+              'numero_destino' => 'NUMERO',
+              'mensagem'       => 'SUA MENSAGEM'
+            ]);
+echo $response->getContent(); // {}
     
-    $client = new Client('{YOUR-ACCESS-TOKEN}');
-    $service = new TtsService($client);
-    $response = $service->enviar('NUMERO-DESTINO', 'MENSAGEM');
-    echo $response; // {}
-
-} catch(ClientException $ex) {
-    echo $ex->getMessage();
-}
 ```
 
 > ##### Envio de Audio
@@ -177,18 +155,15 @@ try {
 
 use TotalVoice\Client;
 use TotalVoice\Audio\AudioService;
-use TotalVoice\ClientException;
 
-try {
-    
-    $client = new Client('{YOUR-ACCESS-TOKEN}');
-    $service = new AudioService($client);
-    $response = $service->enviar('NUMERO-DESTINO', 'MENSAGEM');
-    echo $response; // {}
+$client = new Client('{SEU-ACCESS-TOKEN}');
+$service = new AudioService($client);
+$response = $service->enviar([
+              'numero_destino' => 'NUMERO',
+              'mensagem'       => 'SUA MENSAGEM'
+            ]);
+echo $response->getContent(); // {}
 
-} catch(ClientException $ex) {
-    echo $ex->getMessage();
-}
 ```
 
 > ##### Configurações de central telefonica
@@ -199,18 +174,12 @@ try {
 
 use TotalVoice\Client;
 use TotalVoice\Central\CentralService;
-use TotalVoice\ClientException;
-
-try {
     
-    $client = new Client('{YOUR-ACCESS-TOKEN}');
-    $service = new CentralService($client);
-    $response = $service->buscaRamal('ID-RAMAL');
-    echo $response; // {}
-
-} catch(ClientException $ex) {
-    echo $ex->getMessage();
-}
+$client = new Client('{SEU-ACCESS-TOKEN}');
+$service = new CentralService($client);
+$response = $service->buscaRamal('ID-RAMAL');
+echo $response->getContent(); // {}
+    
 ```
 
 > ##### Gerenciamento dos dados da Conta
@@ -221,18 +190,12 @@ try {
 
 use TotalVoice\Client;
 use TotalVoice\Conta\GerenciadorContaService;
-use TotalVoice\ClientException;
 
-try {
-    
-    $client = new Client('{YOUR-ACCESS-TOKEN}');
-    $service = new GerenciadorContaService($client);
-    $response = $service->buscaConta('ID_CONTA');
-    echo $response; // {}
+$client = new Client('{SEU-ACCESS-TOKEN}');
+$service = new GerenciadorContaService($client);
+$response = $service->buscaConta('ID_CONTA');
+echo $response->getContent(); // {}
 
-} catch(ClientException $ex) {
-    echo $ex->getMessage();
-}
 ```
 
 Mais informações sobre os métodos disponíveis podem ser encontrados na documentação da [API](https://api.totalvoice.com.br/doc/#/)

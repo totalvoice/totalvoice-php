@@ -37,40 +37,21 @@ class CentralService
 
     /**
      * Cria um novo ramal
-     * @return string
+     * @param array $data
+     * @return mixed
      */
-    public function criarRamal(
-        $ramal = null, 
-        $login = null, 
-        $senha = null, 
-        $bina = null, 
-        $isLigacaoExterna = false, 
-        $isLigacaoCelular = false, 
-        $isSalvaAudio = false, 
-        $isAcessoGravacao = false,
-        $uraId = null,
-        $isVoicemail = false
-    )
+    public function criarRamal($data)
     {
         return $this->client->post(
-            new Route([self::ROTA_RAMAL]), [
-            'ramal'           => $ramal,
-            'login'           => $login,
-            'senha'           => $senha,
-            'bina'            => $bina,
-            'ligacao_externa' => $isLigacaoExterna,
-            'ligacao_celular' => $isLigacaoCelular,
-            'gravar_audio'    => $isSalvaAudio,
-            'acesso_gravacoes'=> $isAcessoGravacao,
-            'ura_id'          => $uraId,
-            'voicemail'       => $isVoicemail,
-        ]);
+            new Route([self::ROTA_RAMAL]),
+            $data
+        );
     }
 
     /**
      * Remove um Ramal
      * @param  string $id
-     * @return string
+     * @return mixed
      */
     public function excluirRamal($id)
     {
@@ -79,7 +60,7 @@ class CentralService
 
     /**
      * Busca uma Ramal pelo seu ID
-     * @return string
+     * @return mixed
      */
     public function buscaRamal($id)
     {
@@ -88,41 +69,21 @@ class CentralService
 
     /**
      * Atualiza um ramal
-     * @return string
+     * @param int $id
+     * @param array $data
+     * @return mixed
      */
-    public function atualizarRamal(
-        $id, 
-        $ramal = null, 
-        $login = null, 
-        $senha = null, 
-        $bina = null, 
-        $isLigacaoExterna = false, 
-        $isLigacaoCelular = false, 
-        $isSalvaAudio = false, 
-        $isAcessoGravacao = false,
-        $uraId = null,
-        $isVoicemail = false
-    )
+    public function atualizarRamal($id, $data)
     {
         return $this->client->put(
-            new Route([self::ROTA_RAMAL, $id]), [
-                'ramal'           => $ramal,
-                'login'           => $login,
-                'senha'           => $senha,
-                'bina'            => $bina,
-                'ligacao_externa' => $isLigacaoExterna,
-                'ligacao_celular' => $isLigacaoCelular,
-                'gravar_audio'    => $isSalvaAudio,
-                'acesso_gravacoes'=> $isAcessoGravacao,
-                'ura_id'          => $uraId,
-                'voicemail'       => $isVoicemail,
-            ]
+            new Route([self::ROTA_RAMAL, $id]),
+            $data
         );
     }
 
     /**
      * Relatório de mensagens de Ramal
-     * @return string
+     * @return mixed
      */
     public function relatorio()
     {
@@ -131,45 +92,36 @@ class CentralService
 
     /**
      * Requisita a URL do webphone de um ramal
-     * @param $tipo
-     * @param $idRamal
-     * @param $ramal
-     * @param $ligarPara
-     * @param $fecharFim
-     * @return string
+     * @param array $data
+     * @return mixed
      */
-    public function webphone($tipo, $idRamal, $ramal, $ligarPara, $fecharFim)
+    public function webphone($data)
     {
         return $this->client->get(
-            new Route([self::ROTA_WEBPHONE]), [
-                'tipo'       => $tipo,
-                'id_ramal'   => $idRamal,
-                'ramal'      => $ramal,
-                'ligar_para' => $ligarPara,
-                'fechar_fim' => $fecharFim
-            ]
+            new Route([self::ROTA_WEBPHONE]),
+            $data
         );
     }
 
     /**
      * Cria uma nova URA
      * @param string $nome
-     * @param array  $dados
-     * @return string
+     * @param array $dados
+     * @return mixed
      */
     public function criarUra($nome, $dados)
     {
         return $this->client->post(
             new Route([self::ROTA_URA]), [
-            'nome'            => $nome,
-            'dados'           => $dados
+            'nome'  => $nome,
+            'dados' => $dados
         ]);
     }
 
     /**
      * Remove uma Ura
      * @param  string $id
-     * @return string
+     * @return mixed
      */
     public function excluirUra($id)
     {
@@ -180,17 +132,16 @@ class CentralService
      * Atualiza uma ura
      * @param string $id
      * @param string $nome
-     * @param array  $dados
-     * @return string
+     * @param array $dados
+     * @return mixed
      */
     public function atualizarUra($id, $nome, $dados)
     {
         return $this->client->put(
             new Route([self::ROTA_URA, $id]), [
-                'nome'          => $nome,
-                'dados'         => $dados
+                'nome'  => $nome,
+                'dados' => $dados
             ]
         );
     }
-
 }
