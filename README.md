@@ -24,14 +24,14 @@ Cliente em PHP para API da Totalvoice
 Para instalar a biblioteca basta adicioná-la via [composer](https://getcomposer.org/download/)
 
 ```composer
-composer require total-voice/php-client 0.0.1-rc
+composer require total-voice/php-client 0.0.2-rc
 ```
 
 Ou no composer.json
 
 ```json
 {
-    "total-voice/php-client": "0.0.1-rc"
+    "total-voice/php-client": "0.0.2-rc"
 }
 ```
 
