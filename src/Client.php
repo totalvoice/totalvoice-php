@@ -4,6 +4,8 @@ namespace TotalVoice;
 use TotalVoice\Handler\Curl;
 use TotalVoice\Handler\Http;
 use TotalVoice\Handler\Response;
+use DI\ContainerBuilder;
+use DI\NotFoundException;
 
 class Client implements ClientInterface
 {
@@ -28,6 +30,11 @@ class Client implements ClientInterface
     private $resource;
 
     /**
+     * @var Response
+     */
+    private $response;
+
+    /**
      * Client constructor.
      * @param $accessToken
      * @param $baseUri
@@ -35,6 +42,7 @@ class Client implements ClientInterface
     public function __construct($accessToken, $baseUri = self::BASE_URI)
     {
         $this->resource = new Curl();
+        $this->response = new Response();
         $this->accessToken = $accessToken;
         $this->baseUri = $baseUri;
     }
@@ -149,19 +157,42 @@ class Client implements ClientInterface
      */
     protected function send()
     {
-        $response = new Response();
         try {
 
             $return = $this->resource->exec();
-            $response->setStatusCode((int)$return['http_code']);
-            $response->setContentType($return['content_type']);
-            $response->setContent($return['body']);
+            $this->response->setStatusCode((int)$return['http_code']);
+            $this->response->setContentType($return['content_type']);
+            $this->response->setContent($return['body']);
 
         } catch(ClientException $ex) {
-            $response->setStatusCode(500);
-            $response->setContent(json_encode(['error' => $ex->getMessage()]));
+            $this->handlerException($e);
         }
 
-        return $response;
+        return $this->response;
+    }
+
+    public function __get($name) 
+    {
+        try {
+            
+            $builder = new ContainerBuilder();
+            $container = $builder->build();
+
+            $class = sprintf('TotalVoice\Api\%s', ucwords($name));
+            
+            return $container->make($class, ['client' => $this]);
+
+        } catch(NotFoundException $e) {
+            throw new ClientException(sprintf('Não foi possível instanciar a classe: %s', $class));
+        }
+    }
+
+    /**
+     * @return void
+     */
+    public function handlerException(\Exception $ex)
+    {
+        $this->response->setStatusCode(500);
+        $this->response->setContent(json_encode(['error' => $ex->getMessage()]));
     }
 }

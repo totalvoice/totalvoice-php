@@ -1,15 +1,15 @@
 <?php
-namespace TotalVoice\Sms;
+namespace TotalVoice\Api;
 
 use TotalVoice\Route;
 use TotalVoice\ClientInterface;
 
-class SmsService
+class Audio
 {
     /**
      * @var string
      */
-    const ROTA_SMS = '/sms/';
+    const ROTA_AUDIO = '/audio/';
 
     /**
      * @var ClientInterface
@@ -26,30 +26,36 @@ class SmsService
     }
 
     /**
-     * Envia um sms para um número destino
-     * @param array $data
+     * Envia um audio para um número destino
+     * @param string $numeroDestino
+     * @param string $urlAudio
+     * @param bool $respostaUsuario
+     * @param string $bina
      * @return mixed
      */
-    public function enviar($data)
+    public function enviar($numeroDestino, $urlAudio, $respostaUsuario = false, $bina = null)
     {
         return $this->client->post(
-            new Route([self::ROTA_SMS]),
-            $data
-        );
+            new Route([self::ROTA_AUDIO]), [
+                'numero_destino'   => $numeroDestino,
+                'url_audio'        => $urlAudio,
+                'resposta_usuario' => $respostaUsuario,
+                'bina'             => $bina
+        ]);
     }
 
     /**
-     * Busca um sms pelo seu ID
+     * Busca um audio pelo seu ID
      * @param $id
      * @return mixed
      */
-    public function buscaSms($id)
+    public function buscaAudio($id)
     {
-        return $this->client->get(new Route([self::ROTA_SMS, $id]));
+        return $this->client->get(new Route([self::ROTA_AUDIO, $id]));
     }
 
     /**
-     * Relatório de mensagens de Sms
+     * Relatório de mensagens de Audios
      * @param \DateTime $dataInicio
      * @param \DateTime $dataFinal
      * @return mixed
@@ -57,7 +63,7 @@ class SmsService
     public function relatorio(\DateTime $dataInicio, \DateTime $dataFinal)
     {
         return $this->client->get(
-            new Route([self::ROTA_SMS, 'relatorio']), [
+            new Route([self::ROTA_AUDIO, 'relatorio']), [
             'data_inicio' => $dataInicio->format('d/m/Y'),
             'data_fim'    => $dataFinal->format('d/m/Y')
         ]);

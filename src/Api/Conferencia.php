@@ -1,10 +1,10 @@
 <?php
-namespace TotalVoice\Conferencia;
+namespace TotalVoice\Api;
 
 use TotalVoice\Route;
 use TotalVoice\ClientInterface;
 
-class ConferenciaService
+class Conferencia
 {
     /**
      * @var string
@@ -50,12 +50,14 @@ class ConferenciaService
      * @param array $data
      * @return mixed
      */
-    public function addNumeroConferencia($id, $data)
+    public function addNumeroConferencia($id, $numero, $bina = null, $gravarAudio = false)
     {
         return $this->client->post(
-            new Route([self::ROTA_CONFERENCIA, $id]),
-            $data
+            new Route([self::ROTA_CONFERENCIA, $id]), [
+                'numero'       => $numero,
+                'bina'         => $bina,
+                'gravar_audio' => $gravarAudio
+            ]
         );
     }
-
 }

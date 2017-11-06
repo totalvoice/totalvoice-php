@@ -1,15 +1,15 @@
 <?php
-namespace TotalVoice\Audio;
+namespace TotalVoice\Api;
 
 use TotalVoice\Route;
 use TotalVoice\ClientInterface;
 
-class AudioService
+class Tts
 {
     /**
      * @var string
      */
-    const ROTA_AUDIO = '/audio/';
+    const ROTA_TTS = '/tts/';
 
     /**
      * @var ClientInterface
@@ -26,30 +26,37 @@ class AudioService
     }
 
     /**
-     * Envia um audio para um número destino
-     * @param array $data
+     * Envia um TTS (text-to-speach) para um número destino
+     * @param string $numeroDestino
+     * @param string $mensagem
+     * @param array $opcoes
      * @return mixed
      */
-    public function enviar($data)
+    public function enviar($numeroDestino, $mensagem, $opcoes)
     {
+        $req = [
+            'numero_destino' => $numeroDestino,
+            'mensagem'       => $mensagem
+        ];
+        $data = array_merge($req, $opcoes);
         return $this->client->post(
-            new Route([self::ROTA_AUDIO]),
+            new Route([self::ROTA_TTS]),
             $data
         );
     }
 
     /**
-     * Busca um audio pelo seu ID
+     * Busca um tts pelo seu ID
      * @param $id
      * @return mixed
      */
-    public function buscaAudio($id)
+    public function buscaTts($id)
     {
-        return $this->client->get(new Route([self::ROTA_AUDIO, $id]));
+        return $this->client->get(new Route([self::ROTA_TTS, $id]));
     }
 
     /**
-     * Relatório de mensagens de Audios
+     * Relatório de mensagens de Tts
      * @param \DateTime $dataInicio
      * @param \DateTime $dataFinal
      * @return mixed
@@ -57,7 +64,7 @@ class AudioService
     public function relatorio(\DateTime $dataInicio, \DateTime $dataFinal)
     {
         return $this->client->get(
-            new Route([self::ROTA_AUDIO, 'relatorio']), [
+            new Route([self::ROTA_TTS, 'relatorio']), [
             'data_inicio' => $dataInicio->format('d/m/Y'),
             'data_fim'    => $dataFinal->format('d/m/Y')
         ]);
