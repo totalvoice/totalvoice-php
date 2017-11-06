@@ -1,6 +1,10 @@
 <?php
 namespace TotalVoice;
 
+use TotalVoice\Handler\Curl;
+use TotalVoice\Handler\Http;
+use TotalVoice\Handler\Response;
+
 class Client implements ClientInterface
 {
     /**
@@ -145,12 +149,18 @@ class Client implements ClientInterface
      */
     protected function send()
     {
-        $return = $this->resource->exec();
-        
         $response = new Response();
-        $response->setStatusCode((int)$return['http_code']);
-        $response->setContentType($return['content_type']);
-        $response->setContent($return['body']);
+        try {
+
+            $return = $this->resource->exec();
+            $response->setStatusCode((int)$return['http_code']);
+            $response->setContentType($return['content_type']);
+            $response->setContent($return['body']);
+
+        } catch(ClientException $ex) {
+            $response->setStatusCode(500);
+            $response->setContent(json_encode(['error' => $ex->getMessage()]));
+        }
 
         return $response;
     }

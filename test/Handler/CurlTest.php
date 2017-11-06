@@ -1,5 +1,5 @@
 <?php
-namespace TotalVoice;
+namespace TotalVoice\Handler;
 
 class CurlTest extends \PHPUnit_Framework_TestCase
 {

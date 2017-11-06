@@ -31,14 +31,13 @@ class ConferenciaService
      */
     public function criaConferencia()
     {
-        return $this->client->post(
-            new Route([self::ROTA_CONFERENCIA]), []);
+        return $this->client->post(new Route([self::ROTA_CONFERENCIA]), []);
     }
 
     /**
      * Busca uma conferência pelo seu ID
      * @param $id
-     * @return string
+     * @return mixed
      */
     public function buscaConferencia($id)
     {
@@ -47,20 +46,15 @@ class ConferenciaService
 
     /**
      * Envia um audio para um número destino
-     * @param string $id
-     * @param string $numero
-     * @param string $bina
-     * @param bool   $gravarAudio
+     * @param int $id
+     * @param array $data
      * @return mixed
      */
-    public function addNumeroConferencia($id, $numero, $bina = null, $gravarAudio = false)
+    public function addNumeroConferencia($id, $data)
     {
         return $this->client->post(
-            new Route([self::ROTA_CONFERENCIA, $id]), [
-                'numero'        => $numero,
-                'bina'          => $bina,
-                'gravar_audio'  => $gravarAudio
-            ]
+            new Route([self::ROTA_CONFERENCIA, $id]),
+            $data
         );
     }
 

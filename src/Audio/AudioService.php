@@ -27,28 +27,21 @@ class AudioService
 
     /**
      * Envia um audio para um número destino
-     * @param string $numeroDestino
-     * @param string $urlAudio
-     * @param bool $respostaUsuario
-     * @param string $bina
+     * @param array $data
      * @return mixed
      */
-    public function enviar($numeroDestino, $urlAudio, $respostaUsuario = false, $bina = null)
+    public function enviar($data)
     {
         return $this->client->post(
-            new Route([self::ROTA_AUDIO]), [
-                'numero_destino'    => $numeroDestino,
-                'url_audio'         => $urlAudio,
-                'resposta_usuario'  => $respostaUsuario,
-                'bina'              => $bina
-            ]
+            new Route([self::ROTA_AUDIO]),
+            $data
         );
     }
 
     /**
      * Busca um audio pelo seu ID
      * @param $id
-     * @return string
+     * @return mixed
      */
     public function buscaAudio($id)
     {
@@ -59,7 +52,7 @@ class AudioService
      * Relatório de mensagens de Audios
      * @param \DateTime $dataInicio
      * @param \DateTime $dataFinal
-     * @return string
+     * @return mixed
      */
     public function relatorio(\DateTime $dataInicio, \DateTime $dataFinal)
     {

@@ -27,28 +27,20 @@ class GerenciadorContaService
 
     /**
      * Cria uma nova conta na plataforma
-     * @param string $nome
-     * @param string $login
-     * @param string $senha
-     * @param null $cpfCnpj
-     * @param null $telefone
-     * @return string
+     * @param array $data
+     * @return mixed
      */
-    public function criar($nome, $login, $senha, $cpfCnpj = null, $telefone = null)
+    public function criar($data)
     {
         return $this->client->post(
-            new Route([self::ROTA_CONTA]), [
-            'nome'     => $nome,
-            'login'    => $login,
-            'senha'    => $senha,
-            'cpf_cnpj' => $cpfCnpj,
-            'telefone' => $telefone
-        ]);
+            new Route([self::ROTA_CONTA]),
+            $data
+        );
     }
 
     /**
      * Leitura dos dados de uma conta criada
-     * @return string
+     * @return mixed
      */
     public function buscaConta($id)
     {
@@ -58,7 +50,7 @@ class GerenciadorContaService
     /**
      * Remove uma conta
      * @param $id
-     * @return string
+     * @return mixed
      */
     public function excluir($id)
     {
@@ -67,24 +59,21 @@ class GerenciadorContaService
 
     /**
      * Atualiza os dados de uma conta criada
-     * @return string
+     * @param int $id
+     * @param array $data
+     * @return mixed
      */
-    public function atualizar($id, $nome, $login, $senha, $cpfCnpj = null, $telefone = null)
+    public function atualizar($id, $data)
     {
         return $this->client->put(
-            new Route([self::ROTA_CONTA, $id]), [
-                'nome'     => $nome,
-                'login'    => $login,
-                'senha'    => $senha,
-                'cpf_cnpj' => $cpfCnpj,
-                'telefone' => $telefone
-            ]
+            new Route([self::ROTA_CONTA, $id]),
+            $data
         );
     }
 
     /**
      * Lista contas criadas por mim
-     * @return string
+     * @return mixed
      */
     public function relatorio()
     {

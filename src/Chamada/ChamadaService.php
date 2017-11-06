@@ -27,32 +27,21 @@ class ChamadaService
 
     /**
      * Realiza uma chamada telefônica entre dois números: A e B
-     * @param string $numeroOrigem
-     * @param string $numeroDestino
-     * @param bool $salvaAudio
-     * @param string $binaOrigem
-     * @param string $binaDestino
-     * @param string $tags
+     * @param array $data
      * @return mixed
      */
-    public function ligar($numeroOrigem, $numeroDestino, $salvaAudio = false, $binaOrigem = null, $binaDestino = null, $tags = null)
+    public function ligar($data)
     {
         return $this->client->post(
-            new Route([self::ROTA_CHAMADA]), [
-                'numero_origem'  => $numeroOrigem,
-                'numero_destino' => $numeroDestino,
-                'gravar_audio'   => $salvaAudio,
-                'bina_origem'    => $binaOrigem,
-                'bina_destino'   => $binaDestino,
-                'tags'           => $tags
-            ]
+            new Route([self::ROTA_CHAMADA]),
+            $data
         );
     }
 
     /**
      * Encerra uma chamada ativa
      * @param $id
-     * @return string
+     * @return mixed
      */
     public function encerrar($id)
     {
@@ -62,7 +51,7 @@ class ChamadaService
     /**
      * Busca uma chamada pelo seu ID
      * @param $id
-     * @return string
+     * @return mixed
      */
     public function buscaChamada($id)
     {
@@ -72,7 +61,7 @@ class ChamadaService
     /**
      * Download do áudio de uma chamada gravada
      * @param $id
-     * @return string
+     * @return mixed
      */
     public function downloadGravacao($id)
     {
@@ -83,7 +72,7 @@ class ChamadaService
      * Relatório de mensagens de Chamadas
      * @param \DateTime $dataInicio
      * @param \DateTime $dataFinal
-     * @return string
+     * @return mixed
      */
     public function relatorio(\DateTime $dataInicio, \DateTime $dataFinal)
     {
@@ -97,33 +86,28 @@ class ChamadaService
     /**
      * (Beta) Escuta uma chamada ativa
      * @param $id
-     * @param string $numero
-     * @param string $modo
-     * @return string
+     * @param array $data
+     * @return mixed
      */
-    public function escutar($id, $numero, $modo)
+    public function escutar($id, $data)
     {
         return $this->client->get(
-            new Route([self::ROTA_CHAMADA, $id, '/escuta']), [
-            'numero' => $numero,
-            'modo'   => $modo
-        ]);
+            new Route([self::ROTA_CHAMADA, $id, '/escuta']),
+            $data
+        );
     }
 
     /**
      * (Beta) Faz uma transferência da chamada atual
      * @param int $id
-     * @param string $numero
-     * @param string $perna
-     * @return string
+     * @param array $data
+     * @return mixed
      */
-    public function transferir($id, $numero, $perna)
+    public function transferir($id, $data)
     {
         return $this->client->post(
-            new Route([self::ROTA_CHAMADA, $id]), [
-                'numero' => $number,
-                'perna'  => $perna
-            ]
+            new Route([self::ROTA_CHAMADA, $id]),
+            $data
         );
     }
 }

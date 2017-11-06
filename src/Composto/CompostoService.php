@@ -27,28 +27,21 @@ class CompostoService
 
     /**
      * Envia um composto para um número destino
-     * @param string $numeroDestino
-     * @param array  $dados
-     * @param string $bina
-     * @param string $tags
+     * @param array $data
      * @return mixed
      */
-    public function enviar($numeroDestino, $dados, $bina = null, $tags = null)
+    public function enviar($data)
     {
         return $this->client->post(
-            new Route([self::ROTA_COMPOSTO]), [
-                'numero_destino'    => $numeroDestino,
-                'dados'             => $dados,
-                'bina'              => $bina,
-                'tags'              => $tags
-            ]
+            new Route([self::ROTA_COMPOSTO]),
+            $data
         );
     }
 
     /**
      * Busca um composto pelo seu ID
      * @param $id
-     * @return string
+     * @return mixed
      */
     public function buscaComposto($id)
     {
@@ -59,7 +52,7 @@ class CompostoService
      * Relatório de mensagens de Composto
      * @param \DateTime $dataInicio
      * @param \DateTime $dataFinal
-     * @return string
+     * @return mixed
      */
     public function relatorio(\DateTime $dataInicio, \DateTime $dataFinal)
     {

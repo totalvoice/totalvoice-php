@@ -1,5 +1,5 @@
 <?php
-namespace TotalVoice;
+namespace TotalVoice\Handler;
 
 final class Http
 {

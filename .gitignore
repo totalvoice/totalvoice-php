@@ -3,6 +3,7 @@
 composer.lock
 composer.phar
 .idea/
+index.php
 
 ### Vagrant ###
 .vagrant

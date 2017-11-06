@@ -1,5 +1,5 @@
 <?php
-namespace TotalVoice;
+namespace TotalVoice\Handler;
 
 class Response
 {
@@ -14,7 +14,7 @@ class Response
     protected $contentType;
 
     /**
-     * @var array
+     * @var string
      */
     protected $content;
 
@@ -51,7 +51,7 @@ class Response
     }
 
     /**
-     * @return array
+     * @return string
      */
     public function getContent()
     {
@@ -59,7 +59,7 @@ class Response
     }
     
     /**
-     * @param array $content
+     * @param string $content
      */
     public function setContent($content)
     {

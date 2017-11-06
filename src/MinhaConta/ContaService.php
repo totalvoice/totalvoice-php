@@ -37,7 +37,7 @@ class ContaService
 
     /**
      * Consulta saldo atual
-     * @return string
+     * @return mixed
      */
     public function consultaSaldo()
     {
@@ -46,7 +46,7 @@ class ContaService
 
     /**
      * Leitura dos dados da minha conta
-     * @return string
+     * @return mixed
      */
     public function minhaConta()
     {
@@ -55,29 +55,20 @@ class ContaService
 
     /**
      * Atualiza os dados da minha conta
-     * @param string $nome
-     * @param string $login
-     * @param string $senha
-     * @param null $cpfCnpj
-     * @param null $telefone
-     * @return string
+     * @param array $data
+     * @return mixed
      */
-    public function atualizaDadosConta($nome, $login, $senha, $cpfCnpj = null, $telefone = null)
+    public function atualizaDadosConta($data)
     {
         return $this->client->put(
-            new Route([self::ROTA_CONTA]), [
-                'nome'     => $nome,
-                'login'    => $login,
-                'senha'    => $senha,
-                'cpf_cnpj' => $cpfCnpj,
-                'telefone' => $telefone
-            ]            
+            new Route([self::ROTA_CONTA]),
+            $data
         );
     }
 
     /**
      * Gera um relatório com as recargas efetuadas
-     * @return string
+     * @return mixed
      */
     public function relatorioRecarga()
     {
@@ -86,7 +77,7 @@ class ContaService
 
     /**
      * Gera uma URL para recarga de créditos
-     * @return string
+     * @return mixed
      */
     public function urlRecarga($returnUrl)
     {
@@ -98,7 +89,7 @@ class ContaService
 
     /**
      * Retorna a lista de webhooks configurados para esta conta
-     * @return string
+     * @return mixed
      */
     public function webhooks()
     {
@@ -108,7 +99,7 @@ class ContaService
     /**
      * Apaga um webhook
      * @param string $nome
-     * @return string
+     * @return mixed
      */
     public function excluirWebhook($nome)
     {
@@ -119,7 +110,7 @@ class ContaService
      * Cadastra ou atualiza um webhook
      * @param $nome
      * @param $url
-     * @return string
+     * @return mixed
      */
     public function salvaWebhook($nome, $url)
     {
