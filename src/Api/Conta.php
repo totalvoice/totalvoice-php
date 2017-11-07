@@ -1,10 +1,10 @@
 <?php
-namespace TotalVoice\Conta;
+namespace TotalVoice\Api;
 
 use TotalVoice\Route;
 use TotalVoice\ClientInterface;
 
-class GerenciadorContaService
+class Conta
 {
     /**
      * @var string

@@ -1,10 +1,10 @@
 <?php
-namespace TotalVoice\Central;
+namespace TotalVoice\Api;
 
 use TotalVoice\Route;
 use TotalVoice\ClientInterface;
 
-class CentralService
+class Central
 {
     /**
      * @var string

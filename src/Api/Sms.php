@@ -1,15 +1,15 @@
 <?php
-namespace TotalVoice\Composto;
+namespace TotalVoice\Api;
 
 use TotalVoice\Route;
 use TotalVoice\ClientInterface;
 
-class CompostoService
+class Sms
 {
     /**
      * @var string
      */
-    const ROTA_COMPOSTO = '/composo/';
+    const ROTA_SMS = '/sms/';
 
     /**
      * @var ClientInterface
@@ -26,30 +26,37 @@ class CompostoService
     }
 
     /**
-     * Envia um composto para um número destino
-     * @param array $data
+     * Envia um sms para um número destino
+     * @param string $numeroDestino
+     * @param string $mensagem
+     * @param boolean $respostaUsuario
+     * @param boolean $multiSMS
      * @return mixed
      */
-    public function enviar($data)
+    public function enviar($numeroDestino, $mensagem, $respostaUsuario = false, $multiSMS = false)
     {
         return $this->client->post(
-            new Route([self::ROTA_COMPOSTO]),
-            $data
+            new Route([self::ROTA_SMS]), [
+                'numero_destino'  => $numeroDestino,
+                'mensagem'        => $mensagem,
+                'resposta_usuario'=> $respostaUsuario,
+                'multi_sms'       => $multiSMS
+            ]
         );
     }
 
     /**
-     * Busca um composto pelo seu ID
+     * Busca um sms pelo seu ID
      * @param $id
      * @return mixed
      */
-    public function buscaComposto($id)
+    public function buscaSms($id)
     {
-        return $this->client->get(new Route([self::ROTA_COMPOSTO, $id]));
+        return $this->client->get(new Route([self::ROTA_SMS, $id]));
     }
 
     /**
-     * Relatório de mensagens de Composto
+     * Relatório de mensagens de Sms
      * @param \DateTime $dataInicio
      * @param \DateTime $dataFinal
      * @return mixed
@@ -57,7 +64,7 @@ class CompostoService
     public function relatorio(\DateTime $dataInicio, \DateTime $dataFinal)
     {
         return $this->client->get(
-            new Route([self::ROTA_COMPOSTO, 'relatorio']), [
+            new Route([self::ROTA_SMS, 'relatorio']), [
             'data_inicio' => $dataInicio->format('d/m/Y'),
             'data_fim'    => $dataFinal->format('d/m/Y')
         ]);
