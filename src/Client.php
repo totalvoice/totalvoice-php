@@ -171,6 +171,9 @@ class Client implements ClientInterface
         return $this->response;
     }
 
+    /**
+     * @return mixed
+     */
     public function __get($name) 
     {
         try {
