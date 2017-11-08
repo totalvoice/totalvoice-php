@@ -2,6 +2,7 @@
   "name": "total-voice/php-client",
   "description": "Client para integração com API da Total Voice",
   "type": "library",
+  "license": "MIT",
   "authors": [
     {
       "name": "Diego Wagner",
