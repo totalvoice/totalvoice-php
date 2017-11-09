@@ -24,14 +24,14 @@ Cliente em PHP para API da Totalvoice
 Para instalar a biblioteca basta adicioná-la via [composer](https://getcomposer.org/download/)
 
 ```composer
-composer require total-voice/php-client 1.0.0
+composer require total-voice/php-client 1.0.1
 ```
 
 Ou no composer.json
 
 ```json
 {
-    "total-voice/php-client": "1.0.0"
+    "total-voice/php-client": "1.0.1"
 }
 ```
 
@@ -127,7 +127,7 @@ echo $response->getContent(); // {}
 use TotalVoice\Client as TotalVoiceClient;
 
 $client = new TotalVoiceClient('{SEU-ACCESS-TOKEN}');
-$response = $client->tts-enviar('NUMERO-DESTINO', 'SUA MENSAGEM');
+$response = $client->tts->enviar('NUMERO-DESTINO', 'SUA MENSAGEM');
 
 echo $response->getContent(); // {}
     
