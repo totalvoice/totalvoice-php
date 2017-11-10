@@ -28,10 +28,12 @@ class Response
 
     /**
      * @param int $statusCode
+     * @return Response
      */
     public function setStatusCode($statusCode)
     {
         $this->statusCode = $statusCode;
+        return $this;
     }
 
     /**
@@ -44,10 +46,12 @@ class Response
 
     /**
      * @param string $contentType
+     * @return Response
      */
     public function setContentType($contentType)
     {
         $this->contentType = $contentType;
+        return $this;
     }
 
     /**
@@ -60,9 +64,11 @@ class Response
     
     /**
      * @param string $content
+     * @return Response
      */
     public function setContent($content)
     {
         $this->content = $content;
+        return $this;
     }
 }
