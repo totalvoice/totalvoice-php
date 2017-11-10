@@ -24,14 +24,14 @@ Cliente em PHP para API da Totalvoice
 Para instalar a biblioteca basta adicioná-la via [composer](https://getcomposer.org/download/)
 
 ```composer
-composer require total-voice/php-client 1.0.1
+composer require total-voice/php-client 1.0.2
 ```
 
 Ou no composer.json
 
 ```json
 {
-    "total-voice/php-client": "1.0.1"
+    "total-voice/php-client": "1.0.2"
 }
 ```
 
@@ -54,6 +54,17 @@ Para utilizar esta biblioteca, primeiramente você deverá realizar um cadastro 
 Após a criação do cadastro será disponibilizado um AccessToken para acesso a API.
 
 Com o AccessToken em mãos será possível realizar as consultas/cadastros conforme documentação da [API](https://api.totalvoice.com.br/doc/#/)
+
+Os métodos da API que poderão ser invocados:
+- audio
+- central
+- chamada
+- composto
+- conferencia
+- conta
+- perfil
+- sms
+- tts
 
 A seguir um pequeno exemplo de como pode ser utilizada esta biblioteca.
 

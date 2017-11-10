@@ -160,9 +160,9 @@ class Client implements ClientInterface
         try {
 
             $return = $this->resource->exec();
-            $this->response->setStatusCode((int)$return['http_code']);
-            $this->response->setContentType($return['content_type']);
-            $this->response->setContent($return['body']);
+            $this->response->setStatusCode((int)$return['http_code'])
+                           ->setContentType($return['content_type'])
+                           ->setContent($return['body']);
 
         } catch(ClientException $ex) {
             $this->handlerException($e);
@@ -195,7 +195,11 @@ class Client implements ClientInterface
      */
     public function handlerException(\Exception $ex)
     {
-        $this->response->setStatusCode(500);
-        $this->response->setContent(json_encode(['error' => $ex->getMessage()]));
+        $this->response->setStatusCode(500)
+                       ->setContent(
+                            json_encode([
+                                'error' => $ex->getMessage()
+                            ])
+                       );
     }
 }
