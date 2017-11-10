@@ -23,7 +23,7 @@ $jsonUra = '{
             "opcao":"1", 
             "menu": "menu 1", 
             "acao_dados":{
-                "numero": "4000"
+                "numero_telefone": "4000"
             }
         },
         {
@@ -31,7 +31,7 @@ $jsonUra = '{
             "opcao":"2", 
             "menu": "menu 1", 
             "acao_dados":{
-                "numero": "4010"
+                "numero_telefone": "4010"
             }
         }
         ]}';
