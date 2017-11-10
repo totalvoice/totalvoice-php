@@ -50,7 +50,7 @@ php composer.phar test
 
 > ### Utilização
 
-Para utilizar esta biblioteca, primeiramente você deverá realizar um cadastro no site da [Total Voice API](http://www.totalvoice.com.br/api/).
+Para utilizar esta biblioteca, primeiramente você deverá realizar um cadastro no site da [Total Voice](http://www.totalvoice.com.br).
 Após a criação do cadastro será disponibilizado um AccessToken para acesso a API.
 
 Com o AccessToken em mãos será possível realizar as consultas/cadastros conforme documentação da [API](https://api.totalvoice.com.br/doc/#/)
