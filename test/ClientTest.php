@@ -1,6 +1,8 @@
 <?php
 namespace TotalVoice;
 
+use TotalVoice\Handler\Http;
+
 class ClientTest extends \PHPUnit_Framework_TestCase
 {
     /**
@@ -25,9 +27,11 @@ class ClientTest extends \PHPUnit_Framework_TestCase
     /**
      * @test
      */
-    public function constructShouldInicializeTheCurlResource()
+    public function methodBuildRequestShouldInicializeTheCurlResource()
     {
-        $this->assertEquals('object', gettype($this->client->getResource()));
+        $route = new Route();
+        $resource = $this->client->buildRequest($route, Http::GET);
+        $this->assertEquals('object', gettype($resource));
     }
 
     /**

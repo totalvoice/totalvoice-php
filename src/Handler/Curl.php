@@ -16,13 +16,20 @@ class Curl
     private $headers = [];
 
     /**
-     * @constructor
+     * @var Response
      */
-    public function __construct() 
+    private $response;
+
+    /**
+     * @method init
+     */
+    public function __construct()
     {
         $this->resource = curl_init();
         curl_setopt($this->resource, CURLOPT_RETURNTRANSFER, true);
         curl_setopt($this->resource, CURLOPT_SSL_VERIFYPEER, true);
+
+        $this->response = new Response();
     }
 
     /**
@@ -113,8 +120,46 @@ class Curl
         $data = curl_exec($this->resource);
         $info = curl_getinfo($this->resource);
 
-        curl_close($this->resource);
-
         return array_merge(['body' => $data], $info);
+    }
+
+    /**
+     * @method send
+     * @return string
+     */
+    public function send()
+    {
+        try {
+            $return = $this->exec();
+            $this->response->setStatusCode((int)$return['http_code'])
+                 ->setContentType($return['content_type'])
+                 ->setContent($return['body']);
+
+        } catch(ClientException $ex) {
+            $this->handlerException($ex);
+        }
+
+        return $this->response;
+    }
+
+    /**
+     * @return void
+     */
+    public function handlerException(\Exception $ex)
+    {
+        $this->response->setStatusCode(500)
+             ->setContent(
+                 json_encode([
+                    'error' => $ex->getMessage()
+                 ])
+             );
+    }
+
+    /**
+     * @destruct method
+     */
+    public function __destruct()
+    {
+        curl_close($this->resource);
     }
 }
