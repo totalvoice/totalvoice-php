@@ -83,10 +83,12 @@ class Chamada
      */
     public function relatorio(\DateTime $dataInicio, \DateTime $dataFinal)
     {
+        $dataInicio->setTimezone(new \DateTimeZone('UTC'));
+        $dataFinal->setTimezone(new \DateTimeZone('UTC'));
         return $this->client->get(
             new Route([self::ROTA_CHAMADA, 'relatorio']), [
-            'data_inicio' => $dataInicio->format('d/m/Y'),
-            'data_fim'    => $dataFinal->format('d/m/Y')
+            'data_inicio' => $dataInicio->format('Y-m-d H:i:s e'),
+            'data_fim'    => $dataFinal->format('Y-m-d H:i:s e')
         ]);
     }
 
