@@ -119,7 +119,7 @@ class Chamada
     public function transferir($id, $numero, $perna)
     {
         return $this->client->post(
-            new Route([self::ROTA_CHAMADA, $id]), [
+            new Route([self::ROTA_CHAMADA, $id, '/transfer']), [
                 'numero' => $numero,
                 'perna'  => $perna
             ]            
@@ -136,7 +136,7 @@ class Chamada
     public function avaliar($id, $nota, $comentario = null)
     {
         return $this->client->post(
-            new Route([self::ROTA_CHAMADA, $id]), [
+            new Route([self::ROTA_CHAMADA, $id, '/avaliar']), [
                 'nota'       => $nota,
                 'comentario' => $comentario
             ]            

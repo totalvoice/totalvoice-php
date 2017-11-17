@@ -3,7 +3,6 @@ namespace TotalVoice;
 
 use TotalVoice\Handler\Curl;
 use TotalVoice\Handler\Http;
-use TotalVoice\Handler\Response;
 use DI\ContainerBuilder;
 use DI\NotFoundException;
 
@@ -17,6 +16,11 @@ class Client implements ClientInterface
     /**
      * @var string
      */
+    const NAMESPACE_API = 'TotalVoice\\Api\\';
+
+    /**
+     * @var string
+     */
     private $accessToken;
 
     /**
@@ -25,24 +29,12 @@ class Client implements ClientInterface
     private $baseUri;
 
     /**
-     * @var resource
-     */
-    private $resource;
-
-    /**
-     * @var Response
-     */
-    private $response;
-
-    /**
      * Client constructor.
      * @param $accessToken
      * @param $baseUri
      */
     public function __construct($accessToken, $baseUri = self::BASE_URI)
     {
-        $this->resource = new Curl();
-        $this->response = new Response();
         $this->accessToken = $accessToken;
         $this->baseUri = $baseUri;
     }
@@ -103,20 +95,22 @@ class Client implements ClientInterface
      * @param $method
      * @param array $params
      * @param array $data
-     * @return Client
+     * @return Curl
      */
     public function buildRequest(RouteInterface $route, $method, $params = [], $data = [])
     {
+        $resource = new Curl();
         $query = $this->query($params);
-        $this->defaultHeaders();
-        $this->resource->setMethod($method);
+        $resource->addHeader(sprintf('Access-Token: %s', $this->accessToken));
+        $resource->addHeader('Content-type: application/json');
+        $resource->setMethod($method);
         $url = sprintf('%s%s%s', $this->baseUri, $route->build(), $query);
-        $this->resource->setUrl($url);
+        $resource->setUrl($url);
         if(! empty($data)) {
-            $this->resource->setBody($data);;
+            $resource->setBody($data);;
         }
 
-        return $this;
+        return $resource;
     }
 
     /**
@@ -134,72 +128,19 @@ class Client implements ClientInterface
     }
 
     /**
-     * Monta os parâmetros padrões do cabeçalho: Content-Type e Access-Token
-     * @param void
-     */
-    private function defaultHeaders()
-    {
-        $this->resource->addHeader(sprintf('Access-Token: %s', $this->accessToken));
-        $this->resource->addHeader('Content-type: application/json');
-    }
-
-    /**
-     * @return resource
-     */
-    public function getResource()
-    {
-        return $this->resource;
-    }
-
-    /**
-     * @method send
-     * @return string
-     */
-    protected function send()
-    {
-        try {
-
-            $return = $this->resource->exec();
-            $this->response->setStatusCode((int)$return['http_code'])
-                           ->setContentType($return['content_type'])
-                           ->setContent($return['body']);
-
-        } catch(ClientException $ex) {
-            $this->handlerException($e);
-        }
-
-        return $this->response;
-    }
-
-    /**
      * @return mixed
      */
     public function __get($name) 
     {
         try {
-            
             $builder = new ContainerBuilder();
             $container = $builder->build();
 
-            $class = sprintf('TotalVoice\Api\%s', ucwords($name));
-            
+            $class = static::NAMESPACE_API . ucwords($name);
             return $container->make($class, ['client' => $this]);
 
         } catch(NotFoundException $e) {
             throw new ClientException(sprintf('Não foi possível instanciar a classe: %s', $class));
         }
-    }
-
-    /**
-     * @return void
-     */
-    public function handlerException(\Exception $ex)
-    {
-        $this->response->setStatusCode(500)
-                       ->setContent(
-                            json_encode([
-                                'error' => $ex->getMessage()
-                            ])
-                       );
     }
 }
