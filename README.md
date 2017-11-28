@@ -264,9 +264,8 @@ $response = $service->ligar('NUMERO-A', 'NUMERO-B');
 use TotalVoice\Client as TotalVoiceClient;
 use TotalVoice\Api\Chamada;
 
-$client = new TotalVoiceClient('{SEU-ACCESS-TOKEN}', 'https://meuhost.com.br');
-$service = new Did($client);
-$response = $service->listaEstoque();
+$client = new TotalVoiceClient('{SEU-ACCESS-TOKEN}');
+$response = $client->did->listaEstoque();
 
 ```
 
@@ -278,10 +277,9 @@ $response = $service->listaEstoque();
 use TotalVoice\Client as TotalVoiceClient;
 use TotalVoice\Api\Chamada;
 
-$client = new TotalVoiceClient('{SEU-ACCESS-TOKEN}', 'https://meuhost.com.br');
-$service = new Did($client);
+$client = new TotalVoiceClient('{SEU-ACCESS-TOKEN}');
 $idDid = "10";
-$response = $service->adquirir($idDid);
+$response = $client->did->adquirir($idDid);
 
 ```
 
@@ -293,11 +291,10 @@ $response = $service->adquirir($idDid);
 use TotalVoice\Client as TotalVoiceClient;
 use TotalVoice\Api\Chamada;
 
-$client = new TotalVoiceClient('{SEU-ACCESS-TOKEN}', 'https://meuhost.com.br');
-$service = new Did($client);
-$ramalId = "11";
+$client = new TotalVoiceClient('{SEU-ACCESS-TOKEN}');
+$didId = "11";
 $uraId = null;
-$response = $service->atualizar($idDid, $ramalId, $uraId);
+$response = $client->did->atualizar($idDid, $ramalId, $uraId);
 
 ```
 
@@ -309,10 +306,9 @@ $response = $service->atualizar($idDid, $ramalId, $uraId);
 use TotalVoice\Client as TotalVoiceClient;
 use TotalVoice\Api\Chamada;
 
-$client = new TotalVoiceClient('{SEU-ACCESS-TOKEN}', 'https://meuhost.com.br');
-$service = new Did($client);
+$client = new TotalVoiceClient('{SEU-ACCESS-TOKEN}');
 $didId = "11";
-$response = $service->excluir($didId);
+$response = $client->did->excluir($didId);
 
 ```
 
@@ -324,10 +320,8 @@ $response = $service->excluir($didId);
 use TotalVoice\Client as TotalVoiceClient;
 use TotalVoice\Api\Chamada;
 
-$client = new TotalVoiceClient('{SEU-ACCESS-TOKEN}', 'https://meuhost.com.br');
-$service = new Did($client);
-$response = $service->lista();
-
+$client = new TotalVoiceClient('{SEU-ACCESS-TOKEN}');
+$response = $client->did->lista();
 
 
 Mais informações sobre os métodos disponíveis podem ser encontrados na documentação da [API](https://api.totalvoice.com.br/doc/#/)
