@@ -322,6 +322,7 @@ use TotalVoice\Api\Chamada;
 
 $client = new TotalVoiceClient('{SEU-ACCESS-TOKEN}');
 $response = $client->did->lista();
+```
 
 
 Mais informações sobre os métodos disponíveis podem ser encontrados na documentação da [API](https://api.totalvoice.com.br/doc/#/)
