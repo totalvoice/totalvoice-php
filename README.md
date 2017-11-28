@@ -256,6 +256,79 @@ $service = new Chamada($client);
 $response = $service->ligar('NUMERO-A', 'NUMERO-B');
 
 ```
+##### Listando dids no estoque
+
+```php
+<?php
+
+use TotalVoice\Client as TotalVoiceClient;
+use TotalVoice\Api\Chamada;
+
+$client = new TotalVoiceClient('{SEU-ACCESS-TOKEN}', 'https://meuhost.com.br');
+$service = new Did($client);
+$response = $service->listaEstoque();
+
+```
+
+##### Adquirindo um did
+
+```php
+<?php
+
+use TotalVoice\Client as TotalVoiceClient;
+use TotalVoice\Api\Chamada;
+
+$client = new TotalVoiceClient('{SEU-ACCESS-TOKEN}', 'https://meuhost.com.br');
+$service = new Did($client);
+$idDid = "10";
+$response = $service->adquirirDid($idDid);
+
+```
+
+##### Editando um did
+
+```php
+<?php
+
+use TotalVoice\Client as TotalVoiceClient;
+use TotalVoice\Api\Chamada;
+
+$client = new TotalVoiceClient('{SEU-ACCESS-TOKEN}', 'https://meuhost.com.br');
+$service = new Did($client);
+$ramalId = "11";
+$uraId = null;
+$response = $service->atualizarDid($idDid, $ramalId, $uraId);
+
+```
+
+##### Deletando um did
+
+```php
+<?php
+
+use TotalVoice\Client as TotalVoiceClient;
+use TotalVoice\Api\Chamada;
+
+$client = new TotalVoiceClient('{SEU-ACCESS-TOKEN}', 'https://meuhost.com.br');
+$service = new Did($client);
+$didId = "11";
+$response = $service->excluirDid($didId);
+
+```
+
+##### Listando seus dids
+
+```php
+<?php
+
+use TotalVoice\Client as TotalVoiceClient;
+use TotalVoice\Api\Chamada;
+
+$client = new TotalVoiceClient('{SEU-ACCESS-TOKEN}', 'https://meuhost.com.br');
+$service = new Did($client);
+$response = $service->listaDids();
+
+
 
 Mais informações sobre os métodos disponíveis podem ser encontrados na documentação da [API](https://api.totalvoice.com.br/doc/#/)
 

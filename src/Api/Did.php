@@ -9,7 +9,7 @@ class Did
     /**
      * @var string
      */
-    const ROTA_DID = '/did/';
+    const ROTA_DID = '/did';
 
     /**
      * @var string
@@ -52,11 +52,16 @@ class Did
     /**
      * Atualiza um did
      * @param string $id
-     * @param array $data
+     * @param string $ramal_id
+     * @param string $ura_id
      * @return mixed
      */
-    public function atualizarDid($id, $data)
+    public function atualizarDid($id, $ramal_id=null, $ura_id=null)
     {
+        $data = [
+            'ramal_id'  => $ramal_id,
+            'ura_id' => $ura_id
+        ];
         return $this->client->put(
             new Route([self::ROTA_DID, $id]),
             $data
@@ -74,14 +79,13 @@ class Did
 
     /**
      * Adquire um novo did para sua conta
-     * @param array $data
+     * @param integer $id
      * @return mixed
      */
-    public function criar($data)
+    public function adquirirDid($id)
     {
         return $this->client->post(
-            new Route([self::ROTA_DID_ESTOQUE]),
-            $data
+            new Route([self::ROTA_DID_ESTOQUE, $id])
         );
     }
 }
