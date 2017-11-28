@@ -328,6 +328,7 @@ $client = new TotalVoiceClient('{SEU-ACCESS-TOKEN}', 'https://meuhost.com.br');
 $service = new Did($client);
 $response = $service->listaDids();
 
+```
 
 
 Mais informações sobre os métodos disponíveis podem ser encontrados na documentação da [API](https://api.totalvoice.com.br/doc/#/)
