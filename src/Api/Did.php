@@ -34,7 +34,7 @@ class Did
      * Lista todos os dids pertencentes
      * @return mixed
      */
-    public function listaDids()
+    public function lista()
     {
         return $this->client->get(new Route([self::ROTA_DID]));
     }
@@ -44,7 +44,7 @@ class Did
      * @param  string $id
      * @return mixed
      */
-    public function excluirDid($id)
+    public function excluir($id)
     {
         return $this->client->delete(new Route([self::ROTA_DID, $id]));
     }
@@ -56,7 +56,7 @@ class Did
      * @param string $ura_id
      * @return mixed
      */
-    public function atualizarDid($id, $ramal_id=null, $ura_id=null)
+    public function atualizar($id, $ramal_id=null, $ura_id=null)
     {
         $data = [
             'ramal_id'  => $ramal_id,
@@ -82,7 +82,7 @@ class Did
      * @param integer $id
      * @return mixed
      */
-    public function adquirirDid($id)
+    public function adquirir($id)
     {
         return $this->client->post(
             new Route([self::ROTA_DID_ESTOQUE, $id])

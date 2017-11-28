@@ -281,7 +281,7 @@ use TotalVoice\Api\Chamada;
 $client = new TotalVoiceClient('{SEU-ACCESS-TOKEN}', 'https://meuhost.com.br');
 $service = new Did($client);
 $idDid = "10";
-$response = $service->adquirirDid($idDid);
+$response = $service->adquirir($idDid);
 
 ```
 
@@ -297,7 +297,7 @@ $client = new TotalVoiceClient('{SEU-ACCESS-TOKEN}', 'https://meuhost.com.br');
 $service = new Did($client);
 $ramalId = "11";
 $uraId = null;
-$response = $service->atualizarDid($idDid, $ramalId, $uraId);
+$response = $service->atualizar($idDid, $ramalId, $uraId);
 
 ```
 
@@ -312,7 +312,7 @@ use TotalVoice\Api\Chamada;
 $client = new TotalVoiceClient('{SEU-ACCESS-TOKEN}', 'https://meuhost.com.br');
 $service = new Did($client);
 $didId = "11";
-$response = $service->excluirDid($didId);
+$response = $service->excluir($didId);
 
 ```
 
@@ -326,7 +326,7 @@ use TotalVoice\Api\Chamada;
 
 $client = new TotalVoiceClient('{SEU-ACCESS-TOKEN}', 'https://meuhost.com.br');
 $service = new Did($client);
-$response = $service->listaDids();
+$response = $service->lista();
 
 
 
