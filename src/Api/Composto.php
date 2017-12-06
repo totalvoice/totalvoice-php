@@ -9,7 +9,7 @@ class Composto
     /**
      * @var string
      */
-    const ROTA_COMPOSTO = '/composo/';
+    const ROTA_COMPOSTO = '/composto/';
 
     /**
      * @var ClientInterface
