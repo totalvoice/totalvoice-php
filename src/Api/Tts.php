@@ -32,7 +32,7 @@ class Tts
      * @param array $opcoes
      * @return mixed
      */
-    public function enviar($numeroDestino, $mensagem, $opcoes)
+    public function enviar($numeroDestino, $mensagem, $opcoes = [])
     {
         $req = [
             'numero_destino' => $numeroDestino,
