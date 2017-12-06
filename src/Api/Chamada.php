@@ -101,7 +101,7 @@ class Chamada
      */
     public function escutar($id, $numero, $modo)
     {
-        return $this->client->get(
+        return $this->client->post(
             new Route([self::ROTA_CHAMADA, $id, '/escuta']), [
                 'numero' => $numero,
                 'modo'   => $modo
