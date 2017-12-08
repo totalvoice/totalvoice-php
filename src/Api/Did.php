@@ -15,6 +15,11 @@ class Did
      * @var string
      */
     const ROTA_DID_ESTOQUE = '/did/estoque';
+
+    /**
+     * @var string
+     */
+    const ROTA_DID_CHAMADA = '/did/chamada';
     
     /**
      * @var ClientInterface
@@ -88,4 +93,15 @@ class Did
             new Route([self::ROTA_DID_ESTOQUE, $id])
         );
     }
+
+    /**
+     * Busca uma chamada recebida pelo seu ID
+     * @param $id
+     * @return mixed
+     */
+    public function buscaChamadaRecebida($id)
+    {
+        return $this->client->get(new Route([self::ROTA_DID_CHAMADA, $id]));
+    }
+
 }
