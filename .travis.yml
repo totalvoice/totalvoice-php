@@ -5,3 +5,7 @@ php:
 before_script:
 - composer selfupdate
 - composer install --dev --prefer-dist
+notifications:
+  slack:
+    rooms:
+      secure: MTHbRuhaxdKU1uTGhaiSqIhIPFHffuH3GK1w/dfy+MM2nbeofrFQN2Nv6FiNrEXP0wqyxxz+dtiSWxSJ4IhSv9nglr7L1v+v2OC84aP1Z6/7AOb6PBodY7QofWZg5fueZkSJw/Kk8AAnZ0bEdYcQZedS3T/VmteJ9vHvxpqL6MEoaOA1ywThPy6I4nX5+/9b1PjO9oHCsgbw01l3oWTzadyLokyfrYfZCWX4rndce2NkPc9VeyASCBSSUd4ksfB05xGm+kizuvt7PTiJ5JtloXQQ9CignMkLzckKMyT7EV7yfNfbivuO30nPgXFI/mKy2/aMZeEtAFfHexlKvTZFne/niAzf9Cm2abnC5N2JhQtHOMoE52S4KylMUk6jXxdkhs0vo4Q6zHf9FNg3mPljryWV2iA85f6K5zexYLlyvnvliWiLB/9ntq/eA1nrNxOc45UxXir1jvLGrPIhINc+VkDA8qjwstk3Xri6TYT/f+LCiF9EumNSCK/fz+kUkOChluqJlsy7ez7NFX5zJt+KB5AUZmrh9jhGRcWRp/MUUo5eVP3tJmt86WiZ+TkdNCijUcdOjNkMVit7MpDGUDxD9nNZdIEhYs0nbo9eNaiDWPnREvd5nGoi3yR836X3HtbGeYXPjRb0s70rlTnbQ65TPoXeqIqQzsA/aJMH3ywXbw8=
