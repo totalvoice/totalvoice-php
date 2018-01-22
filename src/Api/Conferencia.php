@@ -60,4 +60,14 @@ class Conferencia
             ]
         );
     }
+
+        /**
+     * Remove uma conferência ativa
+     * @param  string $id
+     * @return mixed
+     */
+    public function excluir($id)
+    {
+        return $this->client->delete(new Route([self::ROTA_CONFERENCIA, $id]));
+    }
 }
