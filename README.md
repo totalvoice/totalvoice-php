@@ -334,4 +334,4 @@ Quer contribuir? [clique aqui](https://github.com/totalvoice/totalvoice-php/blob
 
 > ### Licença
 
-Esta biblioteca segue os termos de uso da [MIT](https://github.com/DiloWagner/tvce-client/blob/master/LICENSE)
+Esta biblioteca segue os termos de uso da [MIT](https://github.com/totalvoice/totalvoice-php/blob/master/LICENSE)
