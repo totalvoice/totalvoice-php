@@ -79,7 +79,7 @@ A seguir um pequeno exemplo de como pode ser utilizada esta biblioteca.
 
 use TotalVoice\Client as TotalVoiceClient;
 
-$client = new TotalVoiceClient('{SEU-ACCESS-TOKEN}');
+$client = new TotalVoiceClient('{{access-token}}');
 $response = $client->chamada->ligar('NUMERO-A', 'NUMERO-B');
 
 echo $response->getContent();
