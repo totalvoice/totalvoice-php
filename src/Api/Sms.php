@@ -31,16 +31,22 @@ class Sms
      * @param string $mensagem
      * @param boolean $respostaUsuario
      * @param boolean $multiSMS
+     * @param \DateTime $dataCriacao
      * @return mixed
      */
-    public function enviar($numeroDestino, $mensagem, $respostaUsuario = false, $multiSMS = false)
+    public function enviar($numeroDestino, $mensagem, $respostaUsuario = false, $multiSMS = false, \DateTime $dataCriacao = null)
     {
+        if($dataCriacao instanceof \DateTime) {
+            $dataCriacao->setTimezone(new \DateTimeZone('UTC'));
+            $dataCriacao = $dataCriacao->format('Y-m-d H:i:s e');
+        }
         return $this->client->post(
             new Route([self::ROTA_SMS]), [
                 'numero_destino'  => $numeroDestino,
                 'mensagem'        => $mensagem,
                 'resposta_usuario'=> $respostaUsuario,
-                'multi_sms'       => $multiSMS
+                'multi_sms'       => $multiSMS,
+                'data_criacao'    => $dataCriacao
             ]
         );
     }
