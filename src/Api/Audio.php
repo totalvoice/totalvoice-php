@@ -31,15 +31,17 @@ class Audio
      * @param string $urlAudio
      * @param bool $respostaUsuario
      * @param string $bina
+     * @param bool $gravarAudio
      * @return mixed
      */
-    public function enviar($numeroDestino, $urlAudio, $respostaUsuario = false, $bina = null)
+    public function enviar($numeroDestino, $urlAudio, $respostaUsuario = false, $bina = null, $gravarAudio = false)
     {
         return $this->client->post(
             new Route([self::ROTA_AUDIO]), [
                 'numero_destino'   => $numeroDestino,
                 'url_audio'        => $urlAudio,
                 'resposta_usuario' => $respostaUsuario,
+                'gravar_audio'     => $gravarAudio,
                 'bina'             => $bina
         ]);
     }
