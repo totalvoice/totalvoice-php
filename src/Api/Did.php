@@ -22,11 +22,6 @@ class Did
     const ROTA_DID_CHAMADA = '/did/chamada';
 
     /**
-     * @var string
-     */
-    const ROTA_DID_RELATORIO = '/did/relatorio';
-    
-    /**
      * @var ClientInterface
      */
     private $client;
@@ -121,7 +116,7 @@ class Did
         $dataInicio->setTimezone(new \DateTimeZone('UTC'));
         $dataFinal->setTimezone(new \DateTimeZone('UTC'));
         return $this->client->get(
-            new Route([self::ROTA_DID_RELATORIO, 'relatorio']), [
+            new Route([self::ROTA_DID, 'relatorio']), [
             'data_inicio' => $dataInicio->format('Y-m-d H:i:s e'),
             'data_fim'    => $dataFinal->format('Y-m-d H:i:s e')
         ]);
