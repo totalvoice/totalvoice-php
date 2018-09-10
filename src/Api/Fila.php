@@ -33,4 +33,77 @@ class Fila
     {
         return $this->client->get(new Route([self::ROTA_FILA, $id]));
     }
+
+    /**
+     * Cria uma nova fila
+     * @param string $nome
+     * @param string $estrategia_ring
+     * @param array $timeout_ring
+     * @return mixed
+     */
+    public function criar($nome, $estrategia_ring, $timeout_ring = null)
+    {
+        $req = [
+            'nome'              => $nome,
+            'estrategia_ring'   => $estrategia_ring,
+            'timeout_ring'      => $timeout_ring
+        ];
+        return $this->client->post(
+            new Route([self::ROTA_FILA]),
+            $req
+        );
+    }
+
+
+    /**
+     * Adiciona um ramal na fila
+     * @param string $id
+     * @param string $ramal_id
+     * @return mixed
+     */
+    public function add_ramal($id, $ramal_id)
+    {
+        $req = [
+            'ramal_id'  => $ramal_id,
+        ];
+        return $this->client->post(
+            new Route([self::ROTA_FILA, $id]),
+            $req
+        );
+    }
+
+    /**
+     * Atualiza uma fila
+     * @param int $id
+     * @param array $data
+     * @return mixed
+     */
+    public function atualizarFila($id, $data)
+    {
+        return $this->client->put(
+            new Route([self::ROTA_FILA, $id]),
+            $data
+        );
+    }
+
+    /**
+     * Remove um ramal da fila
+     * @param  string $id
+     * @param  string $ramal_id
+     * @return mixed
+     */
+    public function excluirRamalFila($id, $ramal_id)
+    {
+        return $this->client->delete(new Route([self::ROTA_RAMAL, $id.'/', $ramal_id ]));
+    }
+
+    /**
+     * @param int $id
+     * @param  string $ramal_id
+     * @return string
+     */
+    public function buscarFilaRamal($id, $ramal_id)
+    {
+        return $this->client->get(new Route([self::ROTA_RAMAL, $id.'/', $ramal_id ]));
+    }
 }
