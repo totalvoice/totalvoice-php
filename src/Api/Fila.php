@@ -4,26 +4,12 @@ namespace TotalVoice\Api;
 use TotalVoice\Route;
 use TotalVoice\ClientInterface;
 
-class Fila
+class Fila extends ApiRelatorioChamada
 {
     /**
      * @var string
      */
     const ROTA_FILA = '/fila/';
-
-    /**
-     * @var ClientInterface
-     */
-    private $client;
-
-    /**
-     * Service constructor.
-     * @param ClientInterface $client
-     */
-    public function __construct(ClientInterface $client)
-    {
-        $this->client = $client;
-    }
 
     /**
      * @param int $id
@@ -105,5 +91,11 @@ class Fila
     public function buscarFilaRamal($id, $ramal_id)
     {
         return $this->client->get(new Route([self::ROTA_RAMAL, $id.'/', $ramal_id ]));
+    }
+
+
+    public function getRota()
+    {
+        return self::ROTA_FILA;
     }
 }

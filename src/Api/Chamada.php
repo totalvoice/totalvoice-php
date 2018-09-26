@@ -2,28 +2,13 @@
 namespace TotalVoice\Api;
 
 use TotalVoice\Route;
-use TotalVoice\ClientInterface;
 
-class Chamada
+class Chamada extends ApiRelatorio
 {
     /**
      * @var string
      */
     const ROTA_CHAMADA = '/chamada/';
-
-    /**
-     * @var ClientInterface
-     */
-    private $client;
-
-    /**
-     * Service constructor.
-     * @param ClientInterface $client
-     */
-    public function __construct(ClientInterface $client)
-    {
-        $this->client = $client;
-    }
 
     /**
      * Realiza uma chamada telefônica entre dois números: A e B
@@ -76,23 +61,6 @@ class Chamada
     }
 
     /**
-     * Relatório de mensagens de Chamadas
-     * @param \DateTime $dataInicio
-     * @param \DateTime $dataFinal
-     * @return mixed
-     */
-    public function relatorio(\DateTime $dataInicio, \DateTime $dataFinal)
-    {
-        $dataInicio->setTimezone(new \DateTimeZone('UTC'));
-        $dataFinal->setTimezone(new \DateTimeZone('UTC'));
-        return $this->client->get(
-            new Route([self::ROTA_CHAMADA, 'relatorio']), [
-            'data_inicio' => $dataInicio->format('Y-m-d H:i:s e'),
-            'data_fim'    => $dataFinal->format('Y-m-d H:i:s e')
-        ]);
-    }
-
-    /**
      * (Beta) Escuta uma chamada ativa
      * @param $id
      * @param string $numero
@@ -141,5 +109,10 @@ class Chamada
                 'comentario' => $comentario
             ]            
         );
+    }
+
+    public function getRota()
+    {
+        return self::ROTA_CHAMADA;
     }
 }

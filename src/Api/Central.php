@@ -2,9 +2,8 @@
 namespace TotalVoice\Api;
 
 use TotalVoice\Route;
-use TotalVoice\ClientInterface;
 
-class Central
+class Central extends ApiRelatorioChamadas
 {
     /**
      * @var string
@@ -20,20 +19,6 @@ class Central
      * @var string
      */
     const ROTA_URA = '/ura/';
-
-    /**
-     * @var ClientInterface
-     */
-    private $client;
-
-    /**
-     * Service constructor.
-     * @param ClientInterface $client
-     */
-    public function __construct(ClientInterface $client)
-    {
-        $this->client = $client;
-    }
 
     /**
      * Cria um novo ramal
@@ -79,15 +64,6 @@ class Central
             new Route([self::ROTA_RAMAL, $id]),
             $data
         );
-    }
-
-    /**
-     * Relatório de mensagens de Ramal
-     * @return mixed
-     */
-    public function relatorio()
-    {
-        return $this->client->get(new Route([self::ROTA_RAMAL, 'relatorio']));
     }
 
     /**
@@ -143,5 +119,10 @@ class Central
                 'dados' => $dados
             ]
         );
+    }
+
+    public function getRota()
+    {
+        return self::ROTA_RAMAL;
     }
 }

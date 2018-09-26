@@ -2,28 +2,13 @@
 namespace TotalVoice\Api;
 
 use TotalVoice\Route;
-use TotalVoice\ClientInterface;
 
-class Bina
+class Bina extends ApiRelatorio
 {
     /**
      * @var string
      */
     const ROTA_BINA = '/bina/';
-
-    /**
-     * @var ClientInterface
-     */
-    private $client;
-
-    /**
-     * Service constructor.
-     * @param ClientInterface $client
-     */
-    public function __construct(ClientInterface $client)
-    {
-        $this->client = $client;
-    }
 
     /**
      * @param $telefone
@@ -62,11 +47,8 @@ class Bina
         return $this->client->delete(new Route([self::ROTA_BINA, $telefone]));
     }
 
-    /**
-     * @return string
-     */
-    public function relatorio()
+    public function getRota()
     {
-        return $this->client->get(new Route([self::ROTA_BINA, 'relatorio']));
+        return self::ROTA_BINA;
     }
 }

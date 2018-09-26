@@ -2,28 +2,13 @@
 namespace TotalVoice\Api;
 
 use TotalVoice\Route;
-use TotalVoice\ClientInterface;
 
-class Conferencia
+class Conferencia extends ApiRelatorio
 {
     /**
      * @var string
      */
     const ROTA_CONFERENCIA = '/conferencia/';
-
-    /**
-     * @var ClientInterface
-     */
-    private $client;
-
-    /**
-     * Service constructor.
-     * @param ClientInterface $client
-     */
-    public function __construct(ClientInterface $client)
-    {
-        $this->client = $client;
-    }
 
     /**
      * Cria uma conferência
@@ -37,11 +22,12 @@ class Conferencia
     /**
      * Busca uma conferência pelo seu ID
      * @param $id
+     * @param array $filtros
      * @return mixed
      */
-    public function buscaConferencia($id)
+    public function buscaConferencia($id, $filtros = [])
     {
-        return $this->client->get(new Route([self::ROTA_CONFERENCIA, $id]));
+        return $this->client->get(new Route([self::ROTA_CONFERENCIA, $id]), $filtros);
     }
 
     /**
@@ -69,5 +55,10 @@ class Conferencia
     public function excluir($id)
     {
         return $this->client->delete(new Route([self::ROTA_CONFERENCIA, $id]));
+    }
+
+    public function getRota()
+    {
+        return self::ROTA_CONFERENCIA;
     }
 }

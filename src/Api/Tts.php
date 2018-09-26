@@ -2,28 +2,13 @@
 namespace TotalVoice\Api;
 
 use TotalVoice\Route;
-use TotalVoice\ClientInterface;
 
-class Tts
+class Tts extends ApiRelatorio
 {
     /**
      * @var string
      */
     const ROTA_TTS = '/tts/';
-
-    /**
-     * @var ClientInterface
-     */
-    private $client;
-
-    /**
-     * Service constructor.
-     * @param ClientInterface $client
-     */
-    public function __construct(ClientInterface $client)
-    {
-        $this->client = $client;
-    }
 
     /**
      * Envia um TTS (text-to-speach) para um número destino
@@ -55,20 +40,8 @@ class Tts
         return $this->client->get(new Route([self::ROTA_TTS, $id]));
     }
 
-    /**
-     * Relatório de mensagens de Tts
-     * @param \DateTime $dataInicio
-     * @param \DateTime $dataFinal
-     * @return mixed
-     */
-    public function relatorio(\DateTime $dataInicio, \DateTime $dataFinal)
+    public function getRota()
     {
-        $dataInicio->setTimezone(new \DateTimeZone('UTC'));
-        $dataFinal->setTimezone(new \DateTimeZone('UTC'));
-        return $this->client->get(
-            new Route([self::ROTA_TTS, 'relatorio']), [
-            'data_inicio' => $dataInicio->format('Y-m-d H:i:s e'),
-            'data_fim'    => $dataFinal->format('Y-m-d H:i:s e')
-        ]);
+        return self::ROTA_TTS;
     }
 }

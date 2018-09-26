@@ -4,7 +4,7 @@ namespace TotalVoice\Api;
 use TotalVoice\Route;
 use TotalVoice\ClientInterface;
 
-class Did
+class Did extends ApiRelatorio
 {
     /**
      * @var string
@@ -20,20 +20,6 @@ class Did
      * @var string
      */
     const ROTA_DID_CHAMADA = '/did/chamada';
-
-    /**
-     * @var ClientInterface
-     */
-    private $client;
-
-    /**
-     * Service constructor.
-     * @param ClientInterface $client
-     */
-    public function __construct(ClientInterface $client)
-    {
-        $this->client = $client;
-    }
 
     /**
      * Lista todos os dids pertencentes
@@ -104,21 +90,8 @@ class Did
         return $this->client->get(new Route([self::ROTA_DID_CHAMADA, $id]));
     }
 
-
-    /**
-     * Relatório de chamadas recebidas
-     * @param \DateTime $dataInicio
-     * @param \DateTime $dataFinal
-     * @return mixed
-     */
-    public function relatorio(\DateTime $dataInicio, \DateTime $dataFinal)
+    public function getRota()
     {
-        $dataInicio->setTimezone(new \DateTimeZone('UTC'));
-        $dataFinal->setTimezone(new \DateTimeZone('UTC'));
-        return $this->client->get(
-            new Route([self::ROTA_DID, 'relatorio']), [
-            'data_inicio' => $dataInicio->format('Y-m-d H:i:s e'),
-            'data_fim'    => $dataFinal->format('Y-m-d H:i:s e')
-        ]);
+        return self::ROTA_DID;
     }
 }
