@@ -2,9 +2,8 @@
 namespace TotalVoice\Api;
 
 use TotalVoice\Route;
-use TotalVoice\ClientInterface;
 
-class Did extends ApiRelatorio
+class Did extends ApiRelatorioChamadas
 {
     /**
      * @var string
@@ -50,8 +49,8 @@ class Did extends ApiRelatorio
     public function atualizar($id, $ramal_id=null, $ura_id=null)
     {
         $data = [
-            'ramal_id'  => $ramal_id,
-            'ura_id' => $ura_id
+            'ramal_id' => $ramal_id,
+            'ura_id'   => $ura_id
         ];
         return $this->client->put(
             new Route([self::ROTA_DID, $id]),
@@ -76,7 +75,8 @@ class Did extends ApiRelatorio
     public function adquirir($id)
     {
         return $this->client->post(
-            new Route([self::ROTA_DID_ESTOQUE, $id])
+            new Route([self::ROTA_DID_ESTOQUE, $id]),
+            []
         );
     }
 
@@ -90,6 +90,9 @@ class Did extends ApiRelatorio
         return $this->client->get(new Route([self::ROTA_DID_CHAMADA, $id]));
     }
 
+    /**
+     * @return string
+     */
     public function getRota()
     {
         return self::ROTA_DID;
