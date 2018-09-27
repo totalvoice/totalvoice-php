@@ -8,7 +8,7 @@ class Did extends ApiRelatorioChamadas
     /**
      * @var string
      */
-    const ROTA_DID = '/did';
+    const ROTA_DID = '/did/';
 
     /**
      * @var string
