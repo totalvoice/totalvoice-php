@@ -33,7 +33,9 @@ class Conferencia extends ApiRelatorio
     /**
      * Envia um audio para um número destino
      * @param int $id
-     * @param array $data
+     * @param string $numero
+     * @param string bina
+     * @param bool $gravarAudio
      * @return mixed
      */
     public function addNumeroConferencia($id, $numero, $bina = null, $gravarAudio = false)
@@ -57,6 +59,27 @@ class Conferencia extends ApiRelatorio
         return $this->client->delete(new Route([self::ROTA_CONFERENCIA, $id]));
     }
 
+    /**
+     * Relatório de itens com filtros
+     * @param \DateTime $dataInicio
+     * @param \DateTime $dataFinal
+     * @param array $filtros
+     * @return mixed
+     */
+    public function relatorioChamadasConferencia(\DateTime $dataInicio, \DateTime $dataFinal, array $filtros = [])
+    {
+        $dataInicio->setTimezone(new \DateTimeZone('UTC'));
+        $dataFinal->setTimezone(new \DateTimeZone('UTC'));
+        return $this->client->get(
+            new Route([self::ROTA_CONFERENCIA, 'chamadas/', 'relatorio']), array_merge([
+            'data_inicio' => $dataInicio->format('Y-m-d H:i:s e'),
+            'data_fim'    => $dataFinal->format('Y-m-d H:i:s e')
+        ], $filtros));
+    }
+
+    /**
+     * @return string
+     */
     public function getRota()
     {
         return self::ROTA_CONFERENCIA;

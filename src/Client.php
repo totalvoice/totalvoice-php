@@ -56,7 +56,7 @@ class Client implements ClientInterface
      * Requisição POST
      * @method POST
      * @param RouteInterface $route
-     * @param array $params
+     * @param array $data
      * @return string
      */
     public function post(RouteInterface $route, $data)
@@ -69,7 +69,7 @@ class Client implements ClientInterface
      * Requisição PUT
      * @method PUT
      * @param RouteInterface $route
-     * @param array $params
+     * @param array $data
      * @return string
      */
     public function put(RouteInterface $route, $data)
@@ -128,7 +128,9 @@ class Client implements ClientInterface
     }
 
     /**
+     * @param $name
      * @return mixed
+     * @throws ClientException
      */
     public function __get($name) 
     {
