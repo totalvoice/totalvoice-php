@@ -79,7 +79,7 @@ A seguir um pequeno exemplo de como pode ser utilizada esta biblioteca.
 
 use TotalVoice\Client as TotalVoiceClient;
 
-$client = new TotalVoiceClient('{{access-token}}');
+$client = new TotalVoiceClient('access-token');
 $response = $client->chamada->ligar('NUMERO-A', 'NUMERO-B');
 
 echo $response->getContent();
@@ -94,7 +94,7 @@ echo $response->getContent();
 
 use TotalVoice\Client as TotalVoiceClient;
 
-$client = new TotalVoiceClient('{{access-token}}');
+$client = new TotalVoiceClient('access-token');
 $response = $client->chamada->buscaChamada('ID_CHAMADA');
 
 echo $response->getContent(); // {}
@@ -110,7 +110,7 @@ echo $response->getContent(); // {}
 
 use TotalVoice\Client as TotalVoiceClient;
 
-$client = new TotalVoiceClient('{{access-token}}');
+$client = new TotalVoiceClient('access-token');
 $response = $client->chamada->encerrar('ID_CHAMADA');
 
 echo $response->getContent(); // {}
@@ -125,7 +125,7 @@ echo $response->getContent(); // {}
 
 use TotalVoice\Client as TotalVoiceClient;
 
-$client = new TotalVoiceClient('{{access-token}}');
+$client = new TotalVoiceClient('access-token');
 $response = $client->sms->enviar('NUMERO-DESTINO', 'SUA MENSAGEM');
 
 echo $response->getContent(); // {}
@@ -140,7 +140,7 @@ echo $response->getContent(); // {}
 
 use TotalVoice\Client as TotalVoiceClient;
 
-$client = new TotalVoiceClient('{{access-token}}');
+$client = new TotalVoiceClient('access-token');
 $response = $client->tts->enviar('NUMERO-DESTINO', 'SUA MENSAGEM');
 
 echo $response->getContent(); // {}
@@ -155,7 +155,7 @@ echo $response->getContent(); // {}
 
 use TotalVoice\Client as TotalVoiceClient;
 
-$client = new TotalVoiceClient('{{access-token}}');
+$client = new TotalVoiceClient('access-token');
 $response = $client->audio->enviar('NUMERO-DESTINO', 'SUA MENSAGEM');
 
 echo $response->getContent(); // {}
@@ -170,7 +170,7 @@ echo $response->getContent(); // {}
 
 use TotalVoice\Client as TotalVoiceClient;
     
-$client = new TotalVoiceClient('{{access-token}}');
+$client = new TotalVoiceClient('access-token');
 $response = $client->central->buscaRamal('ID-RAMAL');
 
 echo $response->getContent(); // {}
@@ -185,7 +185,7 @@ echo $response->getContent(); // {}
 
 use TotalVoice\Client as TotalVoiceClient;
 
-$client = new TotalVoiceClient('{{access-token}}');
+$client = new TotalVoiceClient('access-token');
 $response = $client->conta->buscaConta('ID_CONTA');
 
 echo $response->getContent(); // {}
@@ -200,7 +200,7 @@ echo $response->getContent(); // {}
 
 use TotalVoice\Client as TotalVoiceClient;
 
-$client = new TotalVoiceClient('{{access-token}}');
+$client = new TotalVoiceClient('access-token');
 $response = $client->perfil->consultaSaldo();
 
 echo $response->getContent(); // {}
@@ -216,7 +216,7 @@ echo $response->getContent(); // {}
 use TotalVoice\Client as TotalVoiceClient;
 use TotalVoice\Api\Chamada;
 
-$client = new TotalVoiceClient('{{access-token}}');
+$client = new TotalVoiceClient('access-token');
 $service = new Chamada($client);
 $response = $service->ligar('NUMERO-A', 'NUMERO-B');
 
@@ -237,7 +237,7 @@ class MeuClient implements ClientInterface
 
 }
 
-$meuclient = new MeuClient('{{access-token}}');
+$meuclient = new MeuClient('access-token');
 $service = new Chamada($meuclient);
 $response = $service->ligar('NUMERO-A', 'NUMERO-B');
 
@@ -252,7 +252,7 @@ $response = $service->ligar('NUMERO-A', 'NUMERO-B');
 use TotalVoice\Client as TotalVoiceClient;
 use TotalVoice\Api\Chamada;
 
-$client = new TotalVoiceClient('{{access-token}}', 'https://meuhost.com.br');
+$client = new TotalVoiceClient('access-token', 'https://meuhost.com.br');
 $service = new Chamada($client);
 $response = $service->ligar('NUMERO-A', 'NUMERO-B');
 
@@ -265,7 +265,7 @@ $response = $service->ligar('NUMERO-A', 'NUMERO-B');
 use TotalVoice\Client as TotalVoiceClient;
 use TotalVoice\Api\Chamada;
 
-$client = new TotalVoiceClient('{{access-token}}');
+$client = new TotalVoiceClient('access-token');
 $response = $client->did->listaEstoque();
 
 ```
@@ -278,7 +278,7 @@ $response = $client->did->listaEstoque();
 use TotalVoice\Client as TotalVoiceClient;
 use TotalVoice\Api\Chamada;
 
-$client = new TotalVoiceClient('{{access-token}}');
+$client = new TotalVoiceClient('access-token');
 $idDid = "10";
 $response = $client->did->adquirir($idDid);
 
@@ -292,7 +292,7 @@ $response = $client->did->adquirir($idDid);
 use TotalVoice\Client as TotalVoiceClient;
 use TotalVoice\Api\Chamada;
 
-$client = new TotalVoiceClient('{{access-token}}');
+$client = new TotalVoiceClient('access-token');
 $didId = "11";
 $uraId = null;
 $response = $client->did->atualizar($idDid, $ramalId, $uraId);
@@ -307,7 +307,7 @@ $response = $client->did->atualizar($idDid, $ramalId, $uraId);
 use TotalVoice\Client as TotalVoiceClient;
 use TotalVoice\Api\Chamada;
 
-$client = new TotalVoiceClient('{{access-token}}');
+$client = new TotalVoiceClient('access-token');
 $didId = "11";
 $response = $client->did->excluir($didId);
 
@@ -321,7 +321,7 @@ $response = $client->did->excluir($didId);
 use TotalVoice\Client as TotalVoiceClient;
 use TotalVoice\Api\Chamada;
 
-$client = new TotalVoiceClient('{{access-token}}');
+$client = new TotalVoiceClient('access-token');
 $response = $client->did->lista();
 ```
 
