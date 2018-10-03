@@ -2,9 +2,8 @@
 namespace TotalVoice\Api;
 
 use TotalVoice\Route;
-use TotalVoice\ClientInterface;
 
-class Fila extends ApiRelatorioChamada
+class Fila extends ApiRelatorioChamadas
 {
     /**
      * @var string
