@@ -46,7 +46,7 @@ class Fila extends ApiRelatorioChamadas
      * @param string $ramal_id
      * @return mixed
      */
-    public function add_ramal($id, $ramal_id)
+    public function addRamal($id, $ramal_id)
     {
         $req = [
             'ramal_id'  => $ramal_id,
