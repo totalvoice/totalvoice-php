@@ -3,8 +3,20 @@ namespace TotalVoice;
 
 use TotalVoice\Handler\Curl;
 use TotalVoice\Handler\Http;
-use DI\ContainerBuilder;
-use DI\NotFoundException;
+use TotalVoice\Api\Audio;
+use TotalVoice\Api\Bina;
+use TotalVoice\Api\Central;
+use TotalVoice\Api\Chamada;
+use TotalVoice\Api\Composto;
+use TotalVoice\Api\Conferencia;
+use TotalVoice\Api\Conta;
+use TotalVoice\Api\Did;
+use TotalVoice\Api\Fila;
+use TotalVoice\Api\Perfil;
+use TotalVoice\Api\Sms;
+use TotalVoice\Api\Status;
+use TotalVoice\Api\Tts;
+use TotalVoice\Api\Verificacao;
 
 class Client implements ClientInterface
 {
@@ -14,9 +26,24 @@ class Client implements ClientInterface
     const BASE_URI = 'https://api2.totalvoice.com.br';
 
     /**
-     * @var string
+     * @var array Items disponíveis para criação via __get
      */
-    const NAMESPACE_API = 'TotalVoice\\Api\\';
+    const API_ITEMS = [
+        'audio' => Audio::class,
+        'bina' => Bina::class,
+        'central' => Central::class,
+        'chamada' => Chamada::class,
+        'composto' => Composto::class,
+        'conferencia' => Conferencia::class,
+        'conta' => Conta::class,
+        'did' => Did::class,
+        'fila' => Fila::class,
+        'perfil' => Perfil::class,
+        'sms' => Sms::class,
+        'status' => Status::class,
+        'tts' => Tts::class,
+        'verificacao' => Verificacao::class,
+    ];
 
     /**
      * @var string
@@ -132,17 +159,12 @@ class Client implements ClientInterface
      * @return mixed
      * @throws ClientException
      */
-    public function __get($name) 
+    public function __get($name)
     {
-        try {
-            $builder = new ContainerBuilder();
-            $container = $builder->build();
-
-            $class = static::NAMESPACE_API . ucwords($name);
-            return $container->make($class, ['client' => $this]);
-
-        } catch(NotFoundException $e) {
-            throw new ClientException(sprintf('Não foi possível instanciar a classe: %s', $class));
+        if(!array_key_exists(strtolower($name), static::API_ITEMS)) {
+            throw new ClientException(sprintf('Não foi possível instanciar a classe: %s', $name));
         }
+        $class = static::API_ITEMS[$name];
+        return new $class($this);
     }
 }
