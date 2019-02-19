@@ -2,7 +2,6 @@
 namespace TotalVoice\Api;
 
 use TotalVoice\Route;
-use TotalVoice\ClientInterface;
 
 class ValidaNumero extends ApiRelatorio
 {
@@ -14,9 +13,9 @@ class ValidaNumero extends ApiRelatorio
     /**
      * Envia uma chamada para validação do número
      * @param $numeroDestino
-     * @param $nomeProduto
-     * @param int $tamanho
-     * @param bool $isTTS
+     * @param $gravarAudio
+     * @param int $bina
+     * @param bool $maxTentativas
      * @return string
      */ 
     public function enviar($numeroDestino, $gravarAudio= false, $bina = null, $maxTentativas = 1)
@@ -41,6 +40,11 @@ class ValidaNumero extends ApiRelatorio
         return $this->client->get(new Route([self::ROTA_VALIDA_NUMERO]), [
             'id'  => $id
         ]);
+    }
+
+    public function getRota()
+    {
+        return self::ROTA_VALIDA_NUMERO;
     }
 
     
