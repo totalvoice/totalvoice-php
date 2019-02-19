@@ -12,27 +12,13 @@ class ValidaNumero extends ApiRelatorio
     const ROTA_VALIDA_NUMERO = '/valida_numero/';
 
     /**
-     * @var ClientInterface
-     */
-    private $client;
-
-    /**
-     * Service constructor.
-     * @param ClientInterface $client
-     */
-    public function __construct(ClientInterface $client)
-    {
-        $this->client = $client;
-    }
-
-    /**
      * Envia uma chamada para validação do número
      * @param $numeroDestino
      * @param $nomeProduto
      * @param int $tamanho
      * @param bool $isTTS
      * @return string
-     */
+     */ 
     public function enviar($numeroDestino, $gravarAudio= false, $bina = null, $maxTentativas = 1)
     {
         return $this->client->post(
