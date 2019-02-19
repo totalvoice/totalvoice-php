@@ -17,6 +17,7 @@ use TotalVoice\Api\Sms;
 use TotalVoice\Api\Status;
 use TotalVoice\Api\Tts;
 use TotalVoice\Api\Verificacao;
+use TotalVoice\Api\ValidaNumero;
 
 class Client implements ClientInterface
 {
@@ -43,6 +44,7 @@ class Client implements ClientInterface
         'status' => Status::class,
         'tts' => Tts::class,
         'verificacao' => Verificacao::class,
+        'valida_numero' => ValidaNumero::class,
     ];
 
     /**

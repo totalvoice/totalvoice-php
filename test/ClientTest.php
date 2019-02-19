@@ -19,6 +19,7 @@ use TotalVoice\Api\Sms;
 use TotalVoice\Api\Status;
 use TotalVoice\Api\Tts;
 use TotalVoice\Api\Verificacao;
+use TotalVoice\Api\ValidaNumero;
 
 class ClientTest extends \PHPUnit_Framework_TestCase
 {
@@ -82,6 +83,7 @@ class ClientTest extends \PHPUnit_Framework_TestCase
         $status = $this->client->status;
         $tts = $this->client->tts;
         $verificacao = $this->client->verificacao;
+        $validaNumero = $this->client->valida_numero;
 
         $this->assertInstanceOf(Audio::class, $audio);
         $this->assertInstanceOf(Bina::class, $bina);
@@ -97,6 +99,7 @@ class ClientTest extends \PHPUnit_Framework_TestCase
         $this->assertInstanceOf(Status::class, $status);
         $this->assertInstanceOf(Tts::class, $tts);
         $this->assertInstanceOf(Verificacao::class, $verificacao);
+        $this->assertInstanceOf(ValidaNumero::class, $validaNumero);
     }
 
     /**
