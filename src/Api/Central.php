@@ -71,17 +71,18 @@ class Central extends ApiRelatorioChamadas
      * @param int $id
      * @param \DateTime $dataInicio
      * @param \DateTime $dataFinal
+     * @param array $filtros
      * @return mixed
      */
-    public function relatorioPausasRamal($id, \DateTime $dataInicio, \DateTime $dataFinal)
+    public function relatorioPausasRamal($id, \DateTime $dataInicio, \DateTime $dataFinal, array $filtros = [])
     {
         $dataInicio->setTimezone(new \DateTimeZone('UTC'));
         $dataFinal->setTimezone(new \DateTimeZone('UTC'));
         return $this->client->get(
-            new Route([self::ROTA_RAMAL, $id, '/pausas']), [
+            new Route([self::ROTA_RAMAL, $id, '/pausas']), array_merge([
                 'data_inicio' => $dataInicio->format('Y-m-d H:i:s e'),
                 'data_fim'    => $dataFinal->format('Y-m-d H:i:s e')
-            ]
+            ], $filtros)
         );
     }
 
