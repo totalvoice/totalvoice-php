@@ -18,14 +18,16 @@ class Composto extends ApiRelatorio
      * @param string $tags
      * @return mixed
      */
-    public function enviar($numeroDestino, array $dados, $bina = null, $tags = null)
+    public function enviar($numeroDestino, array $dados, $bina = null, $tags = null, $gravar_audio = false, $detecta_caixa = false)
     {
         return $this->client->post(
             new Route([self::ROTA_COMPOSTO]), [
                 'numero_destino' => $numeroDestino,
                 'dados'          => $dados,
                 'bina'           => $bina,
-                'tags'           => $tags
+                'tags'           => $tags,
+                'gravar_audio'   => $gravar_audio,
+                'detecta_caixa'  => $detecta_caixa
             ]
         );
     }
