@@ -15,12 +15,12 @@ class Sms extends ApiRelatorio
      * @param string $numeroDestino
      * @param string $mensagem
      * @param boolean $respostaUsuario
-     * @param string $tags
      * @param boolean $multiSMS
      * @param \DateTime $dataCriacao
+     * @param string $tags
      * @return mixed
      */
-    public function enviar($numeroDestino, $mensagem, $respostaUsuario = false, $tags,  $multiSMS = false, \DateTime $dataCriacao = null)
+    public function enviar($numeroDestino, $mensagem, $respostaUsuario = false, $multiSMS = false, \DateTime $dataCriacao = null, $tags = null)
     {
         if($dataCriacao instanceof \DateTime) {
             $dataCriacao->setTimezone(new \DateTimeZone('UTC'));
@@ -31,9 +31,9 @@ class Sms extends ApiRelatorio
                 'numero_destino'  => $numeroDestino,
                 'mensagem'        => $mensagem,
                 'resposta_usuario'=> $respostaUsuario,
-                'tags'            => $tags,
                 'multi_sms'       => $multiSMS,
-                'data_criacao'    => $dataCriacao
+                'data_criacao'    => $dataCriacao,
+                'tags'            => $tags
             ]
         );
     }

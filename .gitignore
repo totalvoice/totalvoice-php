@@ -4,6 +4,7 @@ composer.lock
 composer.phar
 .idea/
 index.php
+testes/
 
 ### Vagrant ###
 .vagrant
