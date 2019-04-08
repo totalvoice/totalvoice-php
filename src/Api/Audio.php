@@ -17,10 +17,10 @@ class Audio extends ApiRelatorio
      * @param bool $respostaUsuario
      * @param string $bina
      * @param bool $gravarAudio
-     * @param bool $detecta_caixa
+     * @param bool $detectaCaixa
      * @return mixed
      */
-    public function enviar($numeroDestino, $urlAudio, $respostaUsuario = false, $bina = null, $gravarAudio = false, $detecta_caixa = false)
+    public function enviar($numeroDestino, $urlAudio, $respostaUsuario = false, $bina = null, $gravarAudio = false, $detectaCaixa = false)
     {
         return $this->client->post(
             new Route([self::ROTA_AUDIO]), [
