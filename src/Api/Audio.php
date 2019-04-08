@@ -29,7 +29,7 @@ class Audio extends ApiRelatorio
                 'resposta_usuario' => $respostaUsuario,
                 'gravar_audio'     => $gravarAudio,
                 'bina'             => $bina,
-                'detecta_caixa'  => $detecta_caixa
+                'detectaCaixa'     => $detectaCaixa
         ]);
     }
 
