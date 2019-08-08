@@ -37,9 +37,7 @@ class ValidaNumero extends ApiRelatorio
      */
     public function buscar($id)
     {
-        return $this->client->get(new Route([self::ROTA_VALIDA_NUMERO]), [
-            'id'  => $id
-        ]);
+        return $this->client->get(new Route([self::ROTA_VALIDA_NUMERO, $id]));
     }
 
     public function getRota()
