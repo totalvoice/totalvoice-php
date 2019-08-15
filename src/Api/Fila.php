@@ -11,6 +11,15 @@ class Fila extends ApiRelatorioChamadas
     const ROTA_FILA = '/fila/';
 
     /**
+     * Lista as filas em sua Conta
+     * @return string
+     */
+    public function listar()
+    {
+        return $this->client->get(new Route([self::ROTA_FILA]));
+    }
+
+    /**
      * @param int $id
      * @return string
      */
