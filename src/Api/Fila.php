@@ -88,7 +88,7 @@ class Fila extends ApiRelatorioChamadas
      */
     public function excluirRamalFila($id, $ramal_id)
     {
-        return $this->client->delete(new Route([self::ROTA_RAMAL, $id.'/', $ramal_id ]));
+        return $this->client->delete(new Route([self::ROTA_FILA, $id.'/', $ramal_id ]));
     }
 
     /**
@@ -98,7 +98,7 @@ class Fila extends ApiRelatorioChamadas
      */
     public function buscarFilaRamal($id, $ramal_id)
     {
-        return $this->client->get(new Route([self::ROTA_RAMAL, $id.'/', $ramal_id ]));
+        return $this->client->get(new Route([self::ROTA_FILA, $id.'/', $ramal_id ]));
     }
 
 

@@ -79,4 +79,18 @@ class Conta
     {
         return $this->client->get(new Route([self::ROTA_CONTA, 'relatorio']));
     }
+
+    /**
+     * Credita valor de bônus em uma conta filha
+     * @param int $id
+     * @param array $data
+     * @return mixed
+     */
+    public function recargaBonus($id, $data)
+    {
+        return $this->client->post(
+            new Route([self::ROTA_CONTA, $id, '/bonus']),
+            $data
+        );
+    }
 }
