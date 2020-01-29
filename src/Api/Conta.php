@@ -105,7 +105,7 @@ class Conta
      */
     public function webhooksDefault()
     {
-        return $this->client->get(new Route([self::ROTA_CONTA, ROTA_WEBHOOK_DEFAULT]));
+        return $this->client->get(new Route([self::ROTA_CONTA, self::ROTA_WEBHOOK_DEFAULT]));
     }
 
     /**
@@ -114,8 +114,8 @@ class Conta
      * @return mixed
      */
     public function excluirWebhookDefault($nome)
-    {
-        return $this->client->delete(new Route([self::ROTA_CONTA, ROTA_WEBHOOK_DEFAULT, $nome]));
+    {   
+        return $this->client->delete(new Route([self::ROTA_CONTA, self::ROTA_WEBHOOK_DEFAULT, $nome]));
     }
 
     /**
@@ -127,7 +127,7 @@ class Conta
     public function salvaWebhookDefault($nome, $url)
     {
         return $this->client->put(
-            new Route([self::ROTA_CONTA, ROTA_WEBHOOK_DEFAULT, $nome]), 
+            new Route([self::ROTA_CONTA, self::ROTA_WEBHOOK_DEFAULT, $nome]), 
             ['url' => $url]
         );
     }
