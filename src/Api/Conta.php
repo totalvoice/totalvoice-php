@@ -12,6 +12,11 @@ class Conta
     const ROTA_CONTA = '/conta/';
 
     /**
+     * @var string
+     */
+    const ROTA_WEBHOOK_DEFAULT = '/webhook-default/';
+
+    /**
      * @var ClientInterface
      */
     private $client;
@@ -91,6 +96,39 @@ class Conta
         return $this->client->post(
             new Route([self::ROTA_CONTA, $id, '/bonus']),
             $data
+        );
+    }
+
+        /**
+     * Retorna a lista de webhooks default configurados para esta conta
+     * @return mixed
+     */
+    public function webhooksDefault()
+    {
+        return $this->client->get(new Route([self::ROTA_CONTA, self::ROTA_WEBHOOK_DEFAULT]));
+    }
+
+    /**
+     * Apaga um webhook default
+     * @param string $nome
+     * @return mixed
+     */
+    public function excluirWebhookDefault($nome)
+    {   
+        return $this->client->delete(new Route([self::ROTA_CONTA, self::ROTA_WEBHOOK_DEFAULT, $nome]));
+    }
+
+    /**
+     * Cadastra ou atualiza um webhook default
+     * @param $nome
+     * @param $url
+     * @return mixed
+     */
+    public function salvaWebhookDefault($nome, $url)
+    {
+        return $this->client->put(
+            new Route([self::ROTA_CONTA, self::ROTA_WEBHOOK_DEFAULT, $nome]), 
+            ['url' => $url]
         );
     }
 }
