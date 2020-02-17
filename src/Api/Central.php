@@ -13,6 +13,11 @@ class Central extends ApiRelatorioChamadas
     /**
      * @var string
      */
+    const ROTA_FILA = '/fila/';
+
+    /**
+     * @var string
+     */
     const ROTA_WEBPHONE = '/webphone/';
 
     /**
@@ -62,6 +67,20 @@ class Central extends ApiRelatorioChamadas
     {
         return $this->client->put(
             new Route([self::ROTA_RAMAL, $id]),
+            $data
+        );
+    }
+
+    /**
+     * Atualiza um ramal
+     * @param int $id
+     * @param array $data
+     * @return mixed
+     */
+    public function atualizarRamalFila($id, $data)
+    {
+        return $this->client->put(
+            new Route([self::ROTA_RAMAL, $id, self::ROTA_FILA]),
             $data
         );
     }
