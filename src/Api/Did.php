@@ -13,12 +13,12 @@ class Did extends ApiRelatorioChamadas
     /**
      * @var string
      */
-    const ROTA_DID_ESTOQUE = '/did/estoque';
+    const ROTA_DID_ESTOQUE = '/did/estoque/';
 
     /**
      * @var string
      */
-    const ROTA_DID_CHAMADA = '/did/chamada';
+    const ROTA_DID_CHAMADA = '/did/chamada/';
 
     /**
      * Lista todos os dids pertencentes
