@@ -1,13 +1,15 @@
 <?php
 namespace TotalVoice\Handler;
 
-class ResponselTest extends \PHPUnit_Framework_TestCase
+use PHPUnit\Framework\TestCase;
+
+class ResponseTest extends TestCase
 {
     /**
      * @var Response
      */
     private $response;
-    
+
     protected function setUp()
     {
         $this->response = new Response();

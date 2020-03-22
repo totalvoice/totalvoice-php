@@ -1,6 +1,7 @@
 <?php
 namespace TotalVoice;
 
+use PHPUnit\Framework\TestCase;
 use TotalVoice\Handler\Http;
 use TotalVoice\Api\Api;
 use TotalVoice\Api\ApiRelatorio;
@@ -21,7 +22,7 @@ use TotalVoice\Api\Tts;
 use TotalVoice\Api\Verificacao;
 use TotalVoice\Api\ValidaNumero;
 
-class ClientTest extends \PHPUnit_Framework_TestCase
+class ClientTest extends TestCase
 {
     /**
      * @var Client

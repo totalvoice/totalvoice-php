@@ -1,7 +1,10 @@
 <?php
 namespace TotalVoice\Handler;
 
-class CurlTest extends \PHPUnit_Framework_TestCase
+use PHPUnit\Framework\TestCase;
+use TotalVoice\ClientException;
+
+class CurlTest extends TestCase
 {
     /**
      * @var Curl
@@ -15,10 +18,10 @@ class CurlTest extends \PHPUnit_Framework_TestCase
 
     /**
      * @test
-     * @expectedException \TotalVoice\ClientException
      */
     public function serializeMethodShouldReturnExceptionCaseNotArray()
     {
+        $this->expectException(ClientException::class);
         $this->curl->serialize('');
     }
 
