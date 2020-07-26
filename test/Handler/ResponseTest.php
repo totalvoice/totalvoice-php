@@ -1,7 +1,7 @@
 <?php
 namespace TotalVoice\Handler;
 
-class ResponselTest extends \PHPUnit_Framework_TestCase
+class ResponseTest extends \PHPUnit_Framework_TestCase
 {
     /**
      * @var Response
