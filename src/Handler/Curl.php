@@ -28,6 +28,7 @@ class Curl
         $this->resource = curl_init();
         curl_setopt($this->resource, CURLOPT_RETURNTRANSFER, true);
         curl_setopt($this->resource, CURLOPT_SSL_VERIFYPEER, true);
+        curl_setopt($this->resource, CURLOPT_FOLLOWLOCATION, true);
 
         $this->response = new Response();
     }
