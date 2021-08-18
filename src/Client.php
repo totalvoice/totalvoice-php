@@ -28,7 +28,7 @@ class Client implements ClientInterface
     /**
      * @var string
      */
-    const LIB_VERSION = '1.16.2';
+    const LIB_VERSION = '1.17.0';
 
     /**
      * @var array Items disponíveis para criação via __get
