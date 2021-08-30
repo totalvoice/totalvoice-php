@@ -23,7 +23,12 @@ class Client implements ClientInterface
     /**
      * @var string
      */
-    const BASE_URI = 'https://api2.totalvoice.com.br';
+    const BASE_URI = 'https://voice-api.zenvia.com';
+
+    /**
+     * @var string
+     */
+    const LIB_VERSION = '1.17.0';
 
     /**
      * @var array Items disponíveis para criação via __get
@@ -130,6 +135,7 @@ class Client implements ClientInterface
         $query = $this->query($params);
         $resource->addHeader(sprintf('Access-Token: %s', $this->accessToken));
         $resource->addHeader('Content-type: application/json');
+        $resource->addHeader(sprintf('User-Agent: lib-php/%s', self::LIB_VERSION));
         $resource->setMethod($method);
         $url = sprintf('%s%s%s', $this->baseUri, $route->build(), $query);
         $resource->setUrl($url);
